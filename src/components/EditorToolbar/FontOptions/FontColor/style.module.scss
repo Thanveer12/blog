@@ -1,0 +1,30 @@
+.font-color-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  .font-color-icon {
+    display: block;
+    width: 15px;
+    height: 12px;
+    transition: 300ms all;
+    background: #b1b2b3;
+    mask: url("../../icons/icon-a.svg") no-repeat center center;
+    -webkit-mask: url("../../icons/icon-a.svg") no-repeat center center;
+  }
+  #color-input {
+    position: absolute;
+    top: 7px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    height: 12px;
+    width: 22px;
+    cursor: pointer;
+    background-color: transparent;
+  }
+  #color-input::-webkit-color-swatch {
+    border: none;
+  }
+}

@@ -1,0 +1,164 @@
+.wiki-folder-container {
+    position:fixed;
+    width: 600px;
+    top: 0;
+    bottom: 5px;
+    right: 0;
+    background-color: #262931;
+    border-radius: 2px;
+    height: auto;
+
+    .wiki-header-folder {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 13px 15px;
+        border-bottom: 1px solid #2F3741;
+
+        .wiki-title {
+            width: 93%;
+            display: flex;
+            color: #B1B2B3;
+            // font-family: Open Sans;
+            font-size: 11px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 8px;
+
+
+        }
+        .wiki-folder_right-side {
+            padding: 2px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            .wiki-folder-search {
+                content: "";
+                -webkit-mask: url('../../images/icon-search.svg') no-repeat center center;
+                mask: url("../../images/icon-search.svg") no-repeat center center;
+                width: 12px;
+                -webkit-mask-size: 13px;
+                mask-size: 13px;
+                height: 12px;
+                background-color: #fff;
+                display: block;
+                cursor: pointer;
+                padding-top: 10px;
+            }
+
+            .wiki-folder-search-input {
+                background: transparent;
+                border: none;
+                padding: 2px 8px;
+                line-height: 16px;
+                color: #fff;
+                border: none;
+
+            }
+            .wiki-folder-search-input:focus {
+                outline: none;
+            }
+        }
+
+        .wiki-folder_right-side-increase {
+            width: 93%;
+        }
+
+        .wiki-folder-search-close {
+            content: "";
+            -webkit-mask: url('../../images/icon-vector.svg') no-repeat center center;
+            mask: url("../../images/icon-vector.svg") no-repeat center center;
+            width: 12px;
+            -webkit-mask-size: 13px;
+            mask-size: 13px;
+            height: 12px;
+            background-color: #fff;
+            display: block;
+            cursor: pointer;
+            padding-top: 10px;
+        }
+    }
+
+    .wiki-folder-body {
+        display: flex;
+        height: calc(100% - 46px);
+
+        .wiki-folder-body-left {
+            width: 250px;
+            border-right: 1px solid #2F3741;
+            padding: 5px;
+
+            .wiki-folder-create {
+                border-radius: 2px;
+                display: flex;
+                gap: 5px;
+                padding: 10px;
+                background: transparent;
+                color: #fff;
+                font-size: 11px;
+                border: none;
+        
+                &::before {
+                    content: "";
+                    -webkit-mask: url('../../images/icon-plus-lite.svg') no-repeat center center;
+                    mask: url("../../images/icon-plus-lite.svg") no-repeat center center;
+                    width: 8px;
+                    -webkit-mask-size: 8px;
+                    background-color: #B1B2B3;
+                    mask-size: 8px;
+                    padding-top: 4px;
+                    height: 8px;
+                    display: block;
+                }
+            }
+
+            .wiki-folder-create-input {
+                background: transparent;
+                border: none;
+                padding: 2px 8px;
+                line-height: 16px;
+                color: #fff;
+                border: none;
+                display: flex;
+                align-items: flex-start;
+                font-size: 11px;
+                margin-left: 3px;
+                margin-top: 10px;
+            }
+
+            .wiki-folder-create-input:focus {
+                outline: none;
+            }
+
+            .wiki-list-wrapper {
+                display: flex;
+
+                .wiki-list-data {
+                    font-size: 11px;
+                    padding: 10px;
+                    display: flex;
+                    gap: 10px;
+                    align-items: center;
+                    cursor: pointer;
+
+                    &::before {
+                        content: "";
+                        -webkit-mask: url('../../images/icon-folder.svg') no-repeat center center;
+                        mask: url("../../images/icon-folder.svg") no-repeat center center;
+                        width: 12px;
+                        -webkit-mask-size: 12px;
+                        background-color: #B1B2B3;
+                        mask-size: 12px;
+                        padding-top: 4px;
+                        height: 11px;
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .wiki-folder-body-right {
+            width: 350px;
+        }
+    }
+}

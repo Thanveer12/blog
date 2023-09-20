@@ -1,0 +1,29 @@
+.undo-redo-parent-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  .undo,
+  .redo {
+    width: 12px;
+    height: 12px;
+    transition: 300ms all;
+    background: #b1b2b3;
+    cursor: pointer;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+  .redo {
+    mask: url("../icons/redo.svg") no-repeat center center;
+    -webkit-mask: url("../icons/redo.svg") no-repeat center center;
+  }
+  .undo {
+    mask: url("../icons/undo.svg") no-repeat center center;
+    -webkit-mask: url("../icons/undo.svg") no-repeat center center;
+  }
+}

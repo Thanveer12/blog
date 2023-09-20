@@ -1,0 +1,45 @@
+
+  // .default-image {
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   width: 16px;
+  //   height: 16px;
+  //   background: rgba(0,0,0,.2);
+  //   margin-right: 4px;
+
+  //   &::before {
+  //     content: "";
+  //     mask: url("../../images/no-profile-pic.svg") no-repeat center center;
+  //     -webkit-mask: url("../../images/no-profile-pic.svg") no-repeat center
+  //       center;
+  //       mask-size: 8px;
+  //       -webkit-mask-size: 8px;
+  //       width: 8px;
+  //       height: 8px;
+  //       background-color: #000000;
+  //       margin: 0;
+  //   }
+  // }
+
+.avatar-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.initial {
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  line-height: 20px;
+  user-select: none;
+  letter-spacing: 0.5px;
+  text-indent: 0.5px;
+}
+// }

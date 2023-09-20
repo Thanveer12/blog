@@ -1,0 +1,38 @@
+.font-style-parent-wrapper {
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  .bold ,.italic, .underline ,.strikethrough {
+    width: 15px;
+    height: 15px;
+    transition: 300ms all;
+    background: #b1b2b3;
+    cursor: pointer;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    
+  }
+  .bold {
+    mask: url("../icons/icon-bold.svg") no-repeat center center;
+    -webkit-mask: url("../icons/icon-bold.svg") no-repeat center center;
+  }
+  .italic {
+    mask: url("../icons/icon-italic.svg") no-repeat center center;
+    -webkit-mask: url("../icons/icon-italic.svg") no-repeat center center;
+  }
+  .underline {
+    mask: url("../icons/icon-underline.svg") no-repeat center center;
+    -webkit-mask: url("../icons/icon-underline.svg") no-repeat center center;
+  }
+  .strikethrough {
+    mask: url("../icons/icon-strike-through.svg") no-repeat center center;
+    -webkit-mask: url("../icons/icon-strike-through.svg") no-repeat center center;
+  }
+}

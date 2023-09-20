@@ -1,0 +1,41 @@
+.text-alignment-parent-wrapper {
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  .align-left,
+  .align-center,
+  .align-right,
+  .align-justify {
+    width: 12px;
+    height: 12px;
+    transition: 300ms all;
+    background: #b1b2b3;
+    cursor: pointer;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    
+  }
+  .align-left {
+    mask: url("../icons/icon-left.svg") no-repeat center center;
+    -webkit-mask: url("../icons/icon-left.svg") no-repeat center center;
+  }
+  .align-center {
+    mask: url("../icons/icon-center.svg") no-repeat center center;
+    -webkit-mask: url("../icons/icon-center.svg") no-repeat center center;
+  }
+  .align-right {
+    mask: url("../icons/icon-right.svg") no-repeat center center;
+    -webkit-mask: url("../icons/icon-right.svg") no-repeat center center;
+  }
+  .align-justify {
+    mask: url("../icons/icon-justify.svg") no-repeat center center;
+    -webkit-mask: url("../icons/icon-justify.svg") no-repeat center center;
+  }
+}

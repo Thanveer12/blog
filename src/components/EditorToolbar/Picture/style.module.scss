@@ -1,0 +1,19 @@
+.picture-button-parent-wrapper {
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+    .picture-button {
+      width: 12px;
+      height: 12px;
+      transition: 300ms all;
+      background: #b1b2b3;
+      mask: url("../icons/icon-image.svg") no-repeat center center;
+      -webkit-mask: url("../icons/icon-image.svg") no-repeat center center;
+      cursor: pointer;
+      -khtml-user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+    }
+  }
