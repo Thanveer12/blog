@@ -1,0 +1,17 @@
+.avatar-section-parent-wrappper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  .avatar-section-name-date-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 13px;
+
+    #avatar-section-date {
+      color: #747373;
+      font-size: 11px;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.owner-avatar-name-wrapper {
+  display: flex;
+  gap: 5px;
+align-items: center;
+  .owner-name {
+    width: fit-content !important;
+    padding: 0 !important;
+    font-size: 11px;
+  }
+}

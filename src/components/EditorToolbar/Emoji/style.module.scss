@@ -1,19 +1,21 @@
 .emoji-button-parent-wrapper {
   -khtml-user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-    .emoji-button {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  .emoji-button {
+      cursor: pointer;
       width: 12px;
       height: 12px;
       transition: 300ms all;
       background: #b1b2b3;
-      mask: url("../icons/icon-emoji.svg") no-repeat center center;
       -webkit-mask: url("../icons/icon-emoji.svg") no-repeat center center;
-      cursor: pointer;
+      mask: url("../icons/icon-emoji.svg") no-repeat center center;
       -khtml-user-select: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     }
   }

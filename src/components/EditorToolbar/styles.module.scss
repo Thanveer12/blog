@@ -1,25 +1,16 @@
 .editor-options-parent-wrapper {
-  border-top: 0.1px solid #767677;
-  border-bottom: 0.1px solid #767677;
+  border-top: 0.1px solid;
+  border-bottom: 0.1px solid ;
+  border-color: #2F3741;
   height: 30px;
-  width: 98%; // adjust the height to width 100% later
-
+  width: 1620px; // adjust the height to width 100% later
 
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
 
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-
   .editor-left-options {
-    -khtml-user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     button {
       height: 17px;
     }
@@ -29,16 +20,17 @@
     .separator {
       font-size: 15px;
       color: #5b5b5c;
+      margin-bottom: 3px;
     }
   }
   .editor-right-options {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #fff;
-    cursor: pointer;
 
     .share-button {
+      cursor: pointer;
+
       width: 12px;
       height: 18px;
       transition: 300ms all;
@@ -46,7 +38,6 @@
       mask: url("./icons/btn-with-active-share.svg") no-repeat center center;
       -webkit-mask: url("./icons/btn-with-active-share.svg") no-repeat center
         center;
-      cursor: pointer;
     }
   }
 }

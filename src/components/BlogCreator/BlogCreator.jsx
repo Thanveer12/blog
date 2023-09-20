@@ -3,22 +3,23 @@ import { Steno } from 'react-steno';
 import './BlogCreator.scss';
 import Compressor from 'compressorjs';
 import ClickOutSideListener from '../ClickOutSideListener';
-import EditorToolBar from '../EditorToolbar/EditorToolbar';
+import EditorToolBar from '../EditorToolBar/EditorToolBar';
 
 const BlogCreator = () => {
-
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
+    
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
     const descriptionFnRef = useRef(null);
     const titleFnRef = useRef(null);
+    const tagRef = useRef(null);
+
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
     const [dimension, setDimension] = useState({ width: 0, height: 0 });
     const [formDataImage, setFormDataImage] = useState('');
     const [image, setImage] = useState('');
     const [openImageMenu, setOpenImageMenu] = useState(false);
     const [wikiTag, setWikiTag] = useState([])
-    const tagRef = useRef(null);
     const [openTag, setOpenTag] = useState(false);
     const [activeEditorRef, setActiveEditorRef] = useState();
     const [descriptionAlignment, setDescriptionAlignment] = useState('left')
