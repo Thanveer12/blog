@@ -1,0 +1,41 @@
+.comments-parent-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  input{
+    background-color: #000;
+    outline: none;
+    border: 1px solid #747373;
+    height: 36px;
+    border-radius: 4px;
+    color: #fff;
+    caret-color: #fff;
+    padding: 0px 14px;
+  }
+
+  .commen-avatar-user-content-wrapper {
+    display: flex;
+    gap: 10px;
+
+    .comment-user-content {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      #comment-user-content {
+        font-size: 13px;
+        color: #e3e3e3;
+      }
+
+      #comment-user-name {
+        font-size: 14px;
+
+        span {
+          font-size: 11px;
+          color: #747373;
+        }
+      }
+    }
+  }
+}

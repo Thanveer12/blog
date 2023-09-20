@@ -6,6 +6,7 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  user-select: none;
   .numbered-list,
   .unordered-list {
     width: 12px;
@@ -14,9 +15,10 @@
     background: #b1b2b3;
     cursor: pointer;
     -khtml-user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
   .numbered-list {
     mask: url("../icons/numberListOrder.svg") no-repeat center center;

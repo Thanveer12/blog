@@ -8,8 +8,8 @@
     .wiki-list-mode {
 
         content: "";
-        -webkit-mask: url('../../images/icon-list.svg') no-repeat center center;
-        mask: url("../../images/icon-list.svg") no-repeat center center;
+        -webkit-mask: url('../../icons/icon-list.svg') no-repeat center center;
+        mask: url("../../icons/icon-list.svg") no-repeat center center;
         width: 14px;
         -webkit-mask-size: 14px;
         mask-size: 14px;
@@ -21,8 +21,8 @@
     .wiki-grid-mode {
 
         content: "";
-        -webkit-mask: url("../../images/icon-grid.svg") no-repeat center center;
-        mask: url("../../images/icon-grid.svg") no-repeat center center;
+        -webkit-mask: url("../../icons/icon-grid.svg") no-repeat center center;
+        mask: url("../../icons/icon-grid.svg") no-repeat center center;
         width: 14px;
         -webkit-mask-size: 14px;
         mask-size: 14px;
@@ -62,8 +62,8 @@
 
         &::before {
             content: "";
-            -webkit-mask: url('../../images/icon-recycle.svg') no-repeat center center;
-            mask: url("../../images/icon-recycle.svg") no-repeat center center;
+            -webkit-mask: url('../../icons/icon-recycle.svg') no-repeat center center;
+            mask: url("../../icons/icon-recycle.svg") no-repeat center center;
             width: 8px;
             -webkit-mask-size: 8px;
             background-color: #B1B2B3;
@@ -75,8 +75,8 @@
 
     .wiki-icon-search {
         content: "";
-        -webkit-mask: url('../../images/icon-search.svg') no-repeat center center;
-        mask: url("../../images/icon-search.svg") no-repeat center center;
+        -webkit-mask: url('../../icons/icon-search.svg') no-repeat center center;
+        mask: url("../../icons/icon-search.svg") no-repeat center center;
         width: 14px;
         -webkit-mask-size: 14px;
         mask-size: 14px;
@@ -90,8 +90,8 @@
         
         .wiki-icon-setting {
             content: "";
-            -webkit-mask: url('../../images/icon-setting.svg') no-repeat center center;
-            mask: url("../../images/icon-setting.svg") no-repeat center center;
+            -webkit-mask: url('../../icons/icon-setting.svg') no-repeat center center;
+            mask: url("../../icons/icon-setting.svg") no-repeat center center;
             width: 14px;
             -webkit-mask-size: 14px;
             mask-size: 14px;

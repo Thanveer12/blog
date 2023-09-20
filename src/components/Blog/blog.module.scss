@@ -1,0 +1,30 @@
+.blog-parent-wrapper {
+  padding: 32px 318px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  img {
+    width: 100%;
+    height: 344px;
+  }
+  .bolg-tags-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .blog-content-wrapper{
+
+    p{
+      font-size: 13px;
+      color: #d9d6d6;
+    }
+  }
+
+  .blog-divider {
+    width: 100%;
+    background-color: #747373;
+    height: 0.2px;
+  }
+}

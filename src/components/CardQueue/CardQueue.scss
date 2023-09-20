@@ -1,0 +1,8 @@
+#cardqueue-wrapper{
+    display: flex;
+
+    :not(:first-child){
+        
+        border-left: 0.5px #000;
+    }
+}

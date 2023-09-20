@@ -25,7 +25,8 @@ export default function Avatar({
     alt = 'profile_image',
     height = '30',
     width = '30',
-    borderRadius = '50%'
+    borderRadius = '50%',
+    zIndex=''
 }) {
 
     const [src, setSrc] = useState(imgSrc);
@@ -57,9 +58,11 @@ export default function Avatar({
                     src={src}
                     alt={alt}
                     onError={() => setSrc('')}
-                    style={{ height: height, width: width, borderRadius: borderRadius }}
+                    style={{ height: height, width: width, borderRadius: borderRadius,zIndex }}
                     className='avatar-img'
+                    
                 /> : <div
+                
                     className='initial'
                     style={{
                         height: height,
@@ -68,7 +71,7 @@ export default function Avatar({
                         fontSize: fontSize,
                         color: color.fontColor,
                         backgroundColor: color.backgroundColor,
-                        borderRadius: borderRadius
+                        borderRadius: borderRadius,
                     }}
                 >
                     {initials}

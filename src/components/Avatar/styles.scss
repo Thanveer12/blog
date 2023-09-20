@@ -30,6 +30,7 @@
 }
 
 .initial {
+  color: #B1B2B3;
   font-size: 10px;
   font-weight: 600;
   display: flex;
@@ -38,7 +39,7 @@
   width: 100%;
   height: 100%;
   line-height: 20px;
-  user-select: none;
+  user-select: none; 
   letter-spacing: 0.5px;
   text-indent: 0.5px;
 }

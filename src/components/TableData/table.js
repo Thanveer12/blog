@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useTabContext } from '../Context/TabContext';
+import { useTabContext } from '../../Context/TabContext';
 import './table.scss';
 // import Tags from "../Tags/Tags"
 // import Owner from '../Owner/Owner';

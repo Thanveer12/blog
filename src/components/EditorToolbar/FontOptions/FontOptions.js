@@ -6,12 +6,12 @@ import FontColor from './FontColor/FontColor';
 
 
 
-const FontOptions = ({fontSize, setFontSize, handleColor}) => {
+const FontOptions = ({ fontSize, setFontSize, handleColor }) => {
   return (
     <div className={style['font-options-parent-wrapper']}>
-      <FontFamilySelector/>
-      <FontSize currentSize={fontSize} setCurrentSize={setFontSize}/>
-      <FontColor handleColor={handleColor}/>
+      <FontFamilySelector />
+      <FontSize currentSize={fontSize} setCurrentSize={setFontSize} />
+      <FontColor handleColor={handleColor} />
     </div>
   )
 }

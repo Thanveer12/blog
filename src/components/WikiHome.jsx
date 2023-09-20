@@ -1,8 +1,8 @@
 import React from "react";
 import BlogCreator from "./BlogCreator/BlogCreator";
-import { useTabContext } from "./Context/TabContext";
-import Table from "./TableData/table";
-import {explorer} from "./TableData/tableData";
+import { useTabContext } from "../Context/TabContext";
+import Table from "./Datatable/table";
+import explorer from "./Datatable/tableData";
 import Tabs from "./Tabs/Tabs";
 import Filter from "./WikiFilter/Filter";
 import './WikiHome.scss';
@@ -24,11 +24,10 @@ const WikiHome = () => {
                     showEditBtn={true}
                     backgroundColor={'transparent'}
                     homeIcon={'wiki'}
-                    
                 />
             </div>
-            <Filter />
-            {/* <Table tableData={explorer}/> */}
+            {/* <Filter />
+            <Table tableData={explorer}/> */}
             <BlogCreator />
         </>
     )

@@ -1,8 +1,9 @@
 .url-button-parent-wrapper {
   -khtml-user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   .url-button {
     width: 12px;
     height: 12px;
@@ -15,5 +16,6 @@
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    user-select: none;
   }
 }

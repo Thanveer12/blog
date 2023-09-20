@@ -50,17 +50,16 @@ const FontFamilySelector = () => {
     return (
 
         <div className='fontfamilyselector-parent-wrapper'>
-            <SpeedSelect
-                options={fontStyles}
-                selectLabel={currentFont.label}
-                displayKey='label'
-                uniqueKey='id'
-                maxHeight={150}
-                onSelect={(e) => onFontSelect(e)}
-                disableSearch={true}
-            />
-        
-        </div>
+        <SpeedSelect
+            options={fontStyles}
+            selectLabel={currentFont.label}
+            displayKey='label'
+            uniqueKey='id'
+            maxHeight={150}
+            onSelect={(e) => onFontSelect(e)}
+            disableSearch={true}
+        />
+         </div>
         )
 }
 
