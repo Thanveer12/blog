@@ -2,13 +2,15 @@ import React from 'react'
 import Tags from '../Tags/Tags'
 import CardQueue from '../CardQueue/CardQueue'
 import style from './tabview.module.scss'
+import { useTabContext } from '../../Context/TabContext'
 
-
-const Card = ({ item, setCurrentData, setShowBlog }) => {
-
+const Card = ({ item, setCurrentData }) => {
+  const { handleTabAddBtn,
+    setOpenBlogTab
+    } = useTabContext();
 
   return (
-    <div className={style['card-parent-wrapper']} onClick={item.isFolder ? () => { } : (e) => { e.stopPropagation(); setCurrentData(item); setShowBlog(true) }}>
+    <div className={style['card-parent-wrapper']} onClick={item.isFolder ? () => { } : (e) => { e.stopPropagation(); setCurrentData(item); handleTabAddBtn(item.id,item.name,item) ;setOpenBlogTab(true) }}>
 
       <div className={style['card-header-content-wrapper']}>
 
@@ -45,13 +47,14 @@ const Card = ({ item, setCurrentData, setShowBlog }) => {
     </div>
   )
 }
-const Tabview = ({ tableData, setCurrentData, setShowBlog }) => {
+const Tabview = ({ tableData }) => {
+
+  
   return <>
     {
       tableData.map(item => (<Card key={item.id}
         item={item}
-        setCurrentData={setCurrentData}
-        setShowBlog={setShowBlog} />))
+        setCurrentData={()=>{}}/>))
     }
   </>
 }

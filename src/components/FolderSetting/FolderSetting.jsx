@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import './FolderSetting.scss';
+import style from './FolderSetting.module.scss';
 import UserList from "./UserList";
 
 const folder = [{
@@ -161,30 +161,30 @@ const FolderSetting = () => {
     const [userDetails, setUserDetails] = useState('')
 
     return (
-        <div className="wiki-folder-container">
-            <div className="wiki-header-folder">
-                {!searchFolderClick && <div className="wiki-title">Manage Folder</div>}
-                <div className={"wiki-folder_right-side"+ (searchFolderClick ? " wiki-folder_right-side-increase" : '')}>
-                    <button className="wiki-folder-search" title="open search" onClick={() => setSearchFolderClick(true)}></button>
-                    {searchFolderClick && <input type={'text'} className={'wiki-folder-search-input'} autoFocus/>}
+        <div className={style["wiki-folder-container"]}>
+            <div className={style["wiki-header-folder"]}>
+                {!searchFolderClick && <div className={style["wiki-title"]}>Manage Folder</div>}
+                <div className={style["wiki-folder_right-side"] + (searchFolderClick ? style[" wiki-folder_right-side-increase"] : '')}>
+                    <button className={style["wiki-folder-search"]} title="open search" onClick={() => setSearchFolderClick(true)}></button>
+                    {searchFolderClick && <input type={'text'} className={style['wiki-folder-search-input']} autoFocus/>}
                 </div>
-                {searchFolderClick && <button className="wiki-folder-search-close" title="Close Search" onClick={(e) => {
+                {searchFolderClick && <button className={style["wiki-folder-search-close"]} title="Close Search" onClick={(e) => {
                     e.stopPropagation();
                     setSearchFolderClick(false)
                 }}></button>}
             </div>
 
-            <div className="wiki-folder-body">
-                <div className="wiki-folder-body-left">
-                    {!openFolderSearch && <button className="wiki-folder-create" onClick={(e) => {
+            <div className={style["wiki-folder-body"]}>
+                <div className={style["wiki-folder-body-left"]}>
+                    {!openFolderSearch && <button className={style["wiki-folder-create"]} onClick={(e) => {
                         e.stopPropagation();
                         setOpenFolderSearch(true)
                     }}> Folder</button>}
-                    {openFolderSearch && <input type={'text'} className={'wiki-folder-create-input'} placeholder="Type Here" autoFocus/>}
+                    {openFolderSearch && <input type={'text'} className={style['wiki-folder-create-input']} placeholder="Type Here" autoFocus/>}
                         {folderList.map((list, index) => {
                             return (
-                                <div className="wiki-list-wrapper" key={index + list.name}>
-                                    <div className="wiki-list-data" onClick={() =>{ 
+                                <div className={style["wiki-list-wrapper"]} key={index + list.name}>
+                                    <div className={style["wiki-list-data"]} onClick={() =>{ 
                                         setUserDetails(list.user)
                                     }
                                     }>{list.name}</div>
@@ -193,7 +193,7 @@ const FolderSetting = () => {
                             )
                         })}
                 </div>
-                <div className="wiki-folder-body-right">
+                <div className={style["wiki-folder-body-right"]}>
                     <UserList userDetail={userDetails}/>
                 </div>
             </div>
