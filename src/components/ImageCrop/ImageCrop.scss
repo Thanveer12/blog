@@ -1,6 +1,6 @@
 
-.modal, 
-.overlay {
+.wiki-modal, 
+.wiki-overlay {
   width: 100vw;
   height: 100vh;
   top: 0;
@@ -10,17 +10,17 @@
   position: fixed;
   z-index: 99;
 }
-.overlay {
+.wiki-overlay {
   background: rgba(49,49,49,0.8);
 }
 
-.modal-content-crop {
+.wiki-modal-content-crop {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   line-height: 1.4;
-  background: #ffffff;
+  background: rgba(49,49,49,0.8);
   padding: 25px;
   border-radius: 2px;
   width: 500px;
@@ -29,7 +29,7 @@
   object-fit: contain;
   z-index: 999999;
 
-  .search-list{
+  .wiki-search-list{
     h5{
       font-weight:400;
       font-size:16px;
@@ -45,12 +45,12 @@
       text-transform: uppercase;
     }
     
-    .text-left{
-      .btn{ margin-top:20px; }
+    .wiki-text-left{
+      .wiki-btn{ margin-top:20px; }
     }
   }
 
-  .info-inner{
+  .wiki-info-inner{
     max-width: 100%;
     max-height: 100%;
     width: 500px;
@@ -58,67 +58,67 @@
     position: relative !important;
   }
 
-  .grid {
+  .wiki-grid {
     display: grid;
     grid-template-columns: 150px 52px 105px 105px;
     grid-gap: 10px;
     font-size: 12px;
   }
-  .right-side-nav {
+  .wiki-right-side-nav {
     display: grid;
     grid-template-columns: 20px 20px 20px 20px;
     margin: 0;
     width: 52px;
   }
-  .hori-flip-button {
+  .wiki-hori-flip-button {
     display: block;
     padding: 0;
     width: 20px;
     height: 20px;
     background:#707070;
-    mask: url("../../public/icon-flip-horizontal.png") no-repeat center center;
+    mask: url("../../icons/icon-flip-horizontal.png") no-repeat center center;
     mask-size: 16px;
   }
-  .ver-flip-button {
+  .wiki-ver-flip-button {
     display: block;
     width: 20px;
     height: 20px;
     padding: 0;
     background:#707070;
-    mask: url("../../public/icon-flip-vertical.png") no-repeat center center;
+    mask: url("../../icons/icon-flip-vertical.png") no-repeat center center;
     mask-size: 16px;
   }
-  .right-rotate-button {
+  .wiki-right-rotate-button {
     display: block;
     width: 30px;
     height: 30px;
     padding: 0;
     background:#707070;
-    mask: url("../../public/icon_rotate_right.svg") no-repeat center center;
+    mask: url("../../icons/icon_rotate_right.svg") no-repeat center center;
     mask-size: 20px;
   }
-  .left-rotate-button {
+  .wiki-left-rotate-button {
     background:#707070;
     padding: 0;
     width: 30px;
     height: 30px;
     display: block;
-    mask: url("../../public/icon_rotate_left.svg") no-repeat center center;
+    mask: url("../../icons/icon_rotate_left.svg") no-repeat center center;
     mask-size: 20px;
   }
 
-  .rotate{
+  .wiki-rotate{
     display: flex;
     align-items: center;
   }
 
 
-  .tooltip {
+  .wiki-tooltip {
     top: 100%;
     right: 10px;
     cursor: pointer;
 
-    .info {
+    .wiki-info {
       display: block;
       padding: 0;
       background:#707070;
@@ -126,7 +126,7 @@
       max-width: 100%;
       cursor: pointer;
     }
-    .tooltiptext {
+    .wiki-tooltiptext {
       width: auto;
       padding: 3px 8px;
       margin: 20px 0 0 0;
@@ -142,11 +142,11 @@
       z-index: 1;
     }
   }
-  .tooltip:hover .tooltiptext {
+  .wiki-tooltip:hover .wiki-tooltiptext {
     visibility: visible;
   }
 
-  .select-dropdown{
+  .wiki-select-dropdown{
     position: relative;
     padding: 5px 0;
 
@@ -159,21 +159,21 @@
       font-weight: 600;
       -webkit-appearance: none;
       color:#2151FF;
-      background: transparent url(../../public/images/icon-arrow-down.svg) no-repeat 90% center;
+      background: transparent url(../../icons/icon-arrow-down.svg) no-repeat 90% center;
       &:foucs{
         outline: none;
       }
     }
   }
 
-  .action-buttons{
+  .wiki-action-buttons{
     height: 22px;
     display: flex;
     align-items: center;
     justify-content: flex-end;
 
-    .btn-ok,
-    .btn-cancel{
+    .wiki-btn-ok,
+    .wiki-btn-cancel{
       background: var(--primary-color);
       border: none;
       border-radius: 2px;
@@ -184,13 +184,13 @@
       text-transform: uppercase;
     }
 
-    .btn-cancel {
+    .wiki-btn-cancel {
       background: #666;
       margin-left: 15px;
     }
   }
   
-  .btn-close {
+  .wiki-btn-close {
     display: block;
     width: 14px;
     height: 14px;
@@ -199,7 +199,7 @@
     right: 8px;
     padding: 0;
     background: #333;
-    mask: url("../../public/icon-close.svg") no-repeat center center;
+    mask: url("../../icons/icon-close-lite.svg") no-repeat center center;
     mask-size: 14px;
     border-radius: 4px;
     cursor: pointer;

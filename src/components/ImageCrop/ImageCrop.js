@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Cropper from 'react-easy-crop';
-import 'react-image-crop/dist/ReactCrop.css';
+// import 'react-image-crop/dist/ReactCrop.css';
 import './ImageCrop.scss';
 
 const radian = Math.PI / 180;
@@ -153,12 +153,12 @@ export default function ImageCrop(modalOpen) {
     return (
         <div>
             {modal && (
-                <div className={'modal'}>
-                    <div onClick={setModal} className={'overlay'}></div>
+                <div className={'wiki-modal'}>
+                    <div onClick={setModal} className={'wiki-overlay'}></div>
 
-                    <div className={'modal-content-crop'}>
-                        <div className={'search-list'}>
-                            <div className={'info-inner'}>
+                    <div className={'wiki-modal-content-crop'}>
+                        <div className={'wiki-search-list'}>
+                            <div className={'wiki-info-inner'}>
                                 {rotateimg && <Cropper
                                     image={rotateimg}
                                     crop={crop}
@@ -172,8 +172,8 @@ export default function ImageCrop(modalOpen) {
                                 />}
                             </div>
 
-                            <div className={'grid'}>
-                                <div className={'select-dropdown'}>
+                            <div className={'wiki-grid'}>
+                                <div className={'wiki-select-dropdown'}>
                                     <label>Crop Ratio: </label>
                                     <select value={aspectRatio} onChange={(e) => handleTagFilter(e.target.value)}>
                                         <option value={1 / 1}>square</option>
@@ -185,31 +185,31 @@ export default function ImageCrop(modalOpen) {
                                         <option value={16 / 9}>16:9</option>
                                     </select>
                                 </div>
-                                <div className={'right-side-nav'}>
-                                    <button className={'right-rotate-button'} onClick={(e) => handleInputChange(e, 'rotate-right')}></button>
-                                    <button className={'left-rotate-button'} onClick={(e) => handleInputChange(e, 'rotate-left')}></button>
+                                <div className={'wiki-right-side-nav'}>
+                                    <button className={'wiki-right-rotate-button'} onClick={(e) => handleInputChange(e, 'rotate-right')}></button>
+                                    <button className={'wiki-left-rotate-button'} onClick={(e) => handleInputChange(e, 'rotate-left')}></button>
                                 </div>
-                                <div className={'rotate'}>
+                                <div className={'wiki-rotate'}>
                                     <label>Rotate: </label>
-                                    <div className={'tooltip'}>
-                                        <div className={'tooltiptext'}>{rotate}</div>
-                                        <input className={'info'} type="range" id="vol" name="vol" min="-45" max="45" step='1' value={rotate} onChange={(e) => handleInputChange(e, 'rotate')}></input>
+                                    <div className={'wiki-tooltip'}>
+                                        <div className={'wiki-tooltiptext'}>{rotate}</div>
+                                        <input className={'wiki-info'} type="range" id="vol" name="vol" min="-45" max="45" step='1' value={rotate} onChange={(e) => handleInputChange(e, 'rotate')}></input>
                                     </div>
                                 </div>
-                                <div className={'rotate'}>
+                                <div className={'wiki-rotate'}>
                                     <label>scale: </label>
-                                    <div className={'tooltip'}>
-                                        <div className={'tooltiptext'}>{zoom}</div>
-                                        <input className={'info'} type="range" id="vol" name="vol" min="1" max="3" step='0.1' value={zoom} onChange={(e, zoom) => setZoom(e.target.value)}></input>
+                                    <div className={'wiki-tooltip'}>
+                                        <div className={'wiki-tooltiptext'}>{zoom}</div>
+                                        <input className={'wiki-info'} type="range" id="vol" name="vol" min="1" max="3" step='0.1' value={zoom} onChange={(e, zoom) => setZoom(e.target.value)}></input>
                                     </div>
                                 </div>
                             </div>
 
-                            <div className={'action-buttons'}>
-                                <button className={'btn-ok'} onClick={toggleModal}>DONE</button>
-                                <button className={'btn-cancel'} onClick={closeModal}>Cancel</button>
+                            <div className={'wiki-action-buttons'}>
+                                <button className={'wiki-btn-ok'} onClick={toggleModal}>DONE</button>
+                                <button className={'wiki-btn-cancel'} onClick={closeModal}>Cancel</button>
                             </div>
-                            <span className={'btn-close'} onClick={closeModal}></span>
+                            <span className={'wiki-btn-close'} onClick={closeModal}></span>
                         </div>
                     </div>
                 </div>
