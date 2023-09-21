@@ -5,10 +5,12 @@ import Table from "./Datatable/table";
 import explorer from "./Datatable/tableData";
 import Tabs from "./Tabs/Tabs";
 import Filter from "./WikiFilter/Filter";
+import Blog from './Blog/Blog'
 import './WikiHome.scss';
 
 const WikiHome = () => {
-    const { tabsInfo, setTabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange } = useTabContext()
+    const { tabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange, openBlogEditorTab
+        , openBlogTab } = useTabContext()
 
     return (
         <>
@@ -20,18 +22,23 @@ const WikiHome = () => {
                     onTabsOrderChange={handleTabsOrderChange}
                     onTabAddBtn={() => handleTabAddBtn(0)}
                     showAvatar={false}
-                    showAddBtn={true}
+                    showAddBtn={!openBlogEditorTab}
                     showEditBtn={true}
                     backgroundColor={'transparent'}
                     homeIcon={'wiki'}
                 />
             </div>
-            <div className="wiki-content-parent-wrapper">
-                {tabsInfo.activeTabId === 'home' && <><Filter />
-                    <Table tableData={explorer} /></>
+            {(tabsInfo.activeTabId === 'home' || openBlogTab) && <div className="wiki-content-parent-wrapper">
+                {tabsInfo.activeTabId === 'home' &&
+                    <>
+                        <Filter />
+                        <Table tableData={explorer} />
+                    </>
                 }
-                {/* <BlogCreator /> */}
-            </div>
+                {openBlogTab && <Blog blogData={explorer[0]} />}
+
+            </div>}
+            {openBlogEditorTab && <BlogCreator />}
         </>
     )
 }
