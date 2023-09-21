@@ -10,7 +10,12 @@ export const useTabContext = () => {
 
 export const TabContext = ({ children }) => {
 
-    const currentTabId = useRef()
+    const currentTabId = useRef();
+
+    const [openBlogEditorTab, setOpenBlogEditorTab] = useState(false);
+    const [openBlogTab, setOpenBlogTab] = useState(false)
+
+    // ! move below states to a new context
     const [undoHistory, setUndoHistory] = useState([]);
     const [redoHistory, setRedoHistory] = useState([]);
     const [title, setTitle] = useState('');
@@ -27,18 +32,19 @@ export const TabContext = ({ children }) => {
 
     async function handleTabOpen(tabId) {
 
-
         if (tabId.toString() !== tabsInfo.activeTabId) {
 
             // Do not execute the function if active tab is clicked again
             if (tabId === 'home') {
-                // dispatch({ type: actionType.open_ticket_tab, payload: false })
+                if (openBlogEditorTab) setOpenBlogEditorTab(false)
+                if (openBlogTab) setOpenBlogTab(false)
+
             }
             else {
+                setOpenBlogTab(true)
                 currentTabId.current = +tabId;
                 // if (tabsInfo && !tabsInfo.tabs.filter(item => +item.id === currentTabId.current).length)
                 // AddOrRemoveTab(+tabId, true)
-                // dispatch({ type: actionType.open_ticket_tab, payload: true })
             }
 
             let updatedTabsInfo = {
@@ -57,6 +63,10 @@ export const TabContext = ({ children }) => {
         // clean up: removes tab information from tabsInfo state var and redirects to home tab
         let currentActiveTabid = '';
 
+        // ! check for closig editor tab also
+        setOpenBlogTab(false)
+
+        if (openBlogEditorTab) setOpenBlogEditorTab(false)
         const tabsLengthExcludingHomeTab = tabsInfo.tabs.length - 1;
 
         const currentTabIndex = tabsInfo.tabs.findIndex(item => +item.id === +tabId)
@@ -119,11 +129,16 @@ export const TabContext = ({ children }) => {
     }
 
     function handleTabsOrderChange(reorderTabs) {
+
         let updatedTabsInfo = { ...tabsInfo, tabs: reorderTabs }
         setTabsInfo(updatedTabsInfo);
     }
 
     function handleTabAddBtn(title, id, topics) {
+
+        if (openBlogTab) setOpenBlogTab(false)
+
+        setOpenBlogEditorTab(true)
 
         if (topics?.name.length > 40) {
             title += ` - ${topics?.name.substring(0, 40)} ...`;
@@ -207,13 +222,19 @@ export const TabContext = ({ children }) => {
         // props.history.push("/supportcenter/t-" + id);
     }
 
+
+    // !
     return (
         <TabsContext.Provider
             value={{
                 tabsInfo, setTabsInfo, handleTabAddBtn,
                 handleTabsOrderChange, handleTabRemove, handleTabOpen,
                 undoHistory, setUndoHistory, redoHistory, setRedoHistory,
-                title, setTitle, description, setDescription
+                title, setTitle, description, setDescription,
+                setOpenBlogEditorTab,
+                setOpenBlogTab,
+                openBlogEditorTab,
+                openBlogTab
             }}
         >
             {children}
