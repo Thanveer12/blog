@@ -32,8 +32,9 @@ const RenderTable = ({ item, click }) => {
 
 }
 const Table = ({ tableData }) => {
-    const { tabsInfo, setTabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange } = useTabContext()
+    const { tabsInfo, setTabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange, setGetBloData } = useTabContext()
     const click = (name, id, item) => {
+        setGetBloData(item)
         handleTabAddBtn(name, id, item)
     }
 

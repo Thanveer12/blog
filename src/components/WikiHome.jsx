@@ -2,15 +2,17 @@ import React from "react";
 import BlogCreator from "./BlogCreator/BlogCreator";
 import { useTabContext } from "../Context/TabContext";
 import Table from "./Datatable/table";
-import explorer from "./Datatable/tableData";
+import {explorer} from "./TableData/tableData";
 import Tabs from "./Tabs/Tabs";
 import Filter from "./WikiFilter/Filter";
 import Blog from './Blog/Blog'
 import './WikiHome.scss';
 
 const WikiHome = () => {
-    const { tabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange, openBlogEditorTab
-        , openBlogTab } = useTabContext()
+    const { tabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange, openBlogEditorTab,
+         openBlogTab, handleTabEdit } = useTabContext();
+
+   
 
     return (
         <>
@@ -26,6 +28,8 @@ const WikiHome = () => {
                     showEditBtn={true}
                     backgroundColor={'transparent'}
                     homeIcon={'wiki'}
+                    onEdit={handleTabEdit}
+                    onPublish={handleTabEdit}
                 />
             </div>
             {(tabsInfo.activeTabId === 'home' || openBlogTab) && <div className="wiki-content-parent-wrapper">

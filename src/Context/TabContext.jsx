@@ -13,7 +13,9 @@ export const TabContext = ({ children }) => {
     const currentTabId = useRef();
 
     const [openBlogEditorTab, setOpenBlogEditorTab] = useState(false);
-    const [openBlogTab, setOpenBlogTab] = useState(false)
+    const [openBlogTab, setOpenBlogTab] = useState(false);
+    const [getBlogData, setBlogData] = useState('');
+    const [editMode, setEditMode] = useState(false);
 
     // ! move below states to a new context
     const [undoHistory, setUndoHistory] = useState([]);
@@ -29,6 +31,20 @@ export const TabContext = ({ children }) => {
         activeTabId: 'home', // stores the id of currently opened tab
         newTabCounter: 1, // to name the tabs when more than one tab is being added
     });
+
+    const handleTabEdit = (tab) => {
+        const allTabData = {...tabsInfo}
+        allTabData?.tabs?.forEach((tabs) => {
+            if (+tabs.id === +tab) {
+                tabs.editMode = !tabs.editMode;
+                setEditMode(tabs.editMode)
+            }
+        })
+        setTabsInfo(allTabData);
+
+        console.log(allTabData)
+        console.log(tab);
+    }
 
     async function handleTabOpen(tabId) {
 
@@ -188,7 +204,9 @@ export const TabContext = ({ children }) => {
                         ...tabsInfo.tabs,
                         {
                             id: id.toString(),
-                            name: title
+                            name: title,
+                            privileges: 'EDIT',
+                            editMode: false
                         }
                     ],
                     newTabCounter: tabsInfo.newTabCounter + 1
@@ -234,7 +252,11 @@ export const TabContext = ({ children }) => {
                 setOpenBlogEditorTab,
                 setOpenBlogTab,
                 openBlogEditorTab,
-                openBlogTab
+                openBlogTab,
+                handleTabEdit,
+                getBlogData,
+                setBlogData,
+                editMode
             }}
         >
             {children}
