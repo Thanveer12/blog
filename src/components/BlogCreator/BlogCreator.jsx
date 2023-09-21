@@ -228,8 +228,8 @@ const BlogCreator = ({blog}) => {
 
                     />}
                 </div>
-                <div className={style["wiki-blog-image"] + (formDataImage ? style[' wiki-image-update'] : '')}>
-                    <input type="file" accept="image/jpg, image/jpeg, image/svg" id={style['wiki-file-input']} onChange={(e) => handleFileChange(e, 'featuredImage')} />
+                <div className={`${style["wiki-blog-image"]}  ${formDataImage ? style['wiki-image-update'] : ''}`}>
+                    <input type="file" accept="image/jpg, image/jpeg, image/svg" className={style['wiki-file-input-class']} id='wiki-file-input' onChange={(e) => handleFileChange(e, 'featuredImage')} />
                     <form className={formDataImage ? style['wiki-file-form'] : ''} style={{ background: 'url(' + formDataImage + ') no-repeat center center' }}>
                         {!formDataImage && <label className={style['wiki-image-upload']} htmlFor="wiki-file-input">Upload Image</label>}
                         {formDataImage && <><span className={style['wiki-dot-container']}><span className={style['wiki-3-dot']} onClick={(e) => {
@@ -250,7 +250,7 @@ const BlogCreator = ({blog}) => {
                     </form>
                     {isEditImage && <ImageCrop props={formDataImage} hooksChange={getEditedImage} crop={isImageEditing} />}
                 </div>
-                <div className="wiki-blog-tag">
+                <div className={style["wiki-blog-tag"]}>
                     {!openTag && <button className={style['wiki-tag-creation']} onClick={() => setOpenTag(true)} > Add Tags</button>}
                     {openTag &&
                         <div className={style['field-wrapper'] + ' ' + style['topics-wrapper']}>
