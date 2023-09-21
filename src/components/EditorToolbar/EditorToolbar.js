@@ -14,58 +14,39 @@ import UrlButton from './UrlButton/UrlButton'
 const EditorToolBar = ({ activeEditorRef, alignment, activeState, fontSize, setFontSize, innerEditorRef }) => {
 
     const handleToolbarOptions = (e, type, value) => {
-        // ! convert to switch cases
 
+        switch (type) {
+            case 'bold':
+            case 'italic':
+                activeEditorRef?.current.toggleStyle(e, type);
+                break;
 
-        // switch (type) {
-        //     case 'bold':
-        //     case 'italic':
-        //       activeEditorRef?.current.toggleStyle(e, type);
-        //       break;
-          
-        //     case 'orderedlist':
-        //     case 'unorderedlist':
-        //       innerEditorRef?.current.focus();
-        //       activeEditorRef?.current.toggleList(e, value);
-        //       break;
-          
-        //     case 'alignment':
-        //       if (alignment) alignment(value);
-        //       break;
-          
-        //     case 'underline':
-        //     case 'strike':
-        //       activeEditorRef?.current?.handleTextDecoration?.(e, type);
-        //       break;
-          
-        //     case 'color':
-        //       activeEditorRef?.current?.setTheColorForSelectedText(value);
-        //       break;
-          
-        //     case 'hyperlink':
-        //       activeEditorRef?.current?.showDialogueBoxAtCursor(e);
-        //       break;
-          
-        //     default:
-        //       // Handle the case when 'type' doesn't match any of the specified cases.
-        //       break;
-        //   }
+            case 'orderedlist':
+            case 'unorderedlist':
+                innerEditorRef?.current.focus();
+                activeEditorRef?.current.toggleList(e, value);
+                break;
 
+            case 'alignment':
+                if (alignment) alignment(value);
+                break;
 
+            case 'underline':
+            case 'strike':
+                activeEditorRef?.current?.handleTextDecoration?.(e, type);
+                break;
 
-        if (type === 'bold' || type === 'italic') {
-            activeEditorRef?.current.toggleStyle(e, type)
-        } else if (type === 'orderedlist' || type === 'unorderedlist') {
-            innerEditorRef?.current.focus();
-            activeEditorRef?.current.toggleList(e, value)
-        } else if (type === 'alignment') {
-            if (alignment) alignment(value);
-        } else if (type === 'underline' || type === 'strike') {
-            activeEditorRef?.current?.handleTextDecoration?.(e, type);
-        } else if (type === 'color') {
-            activeEditorRef?.current?.setTheColorForSelectedText(value)
-        } else if (type === 'hyperlink') {
-            activeEditorRef?.current?.showDialogueBoxAtCursor(e);
+            case 'color':
+                activeEditorRef?.current?.setTheColorForSelectedText(value);
+                break;
+
+            case 'hyperlink':
+                activeEditorRef?.current?.showDialogueBoxAtCursor(e);
+                break;
+
+            default:
+                // Handle the case when 'type' doesn't match.
+                break;
         }
     }
 

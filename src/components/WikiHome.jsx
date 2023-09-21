@@ -12,7 +12,7 @@ const WikiHome = () => {
 
     return (
         <>
-             <div className="wiki-app-sub-header">
+            <div className="wiki-app-sub-header">
                 <Tabs tabs={tabsInfo.tabs}   // state variable
                     activeTabId={tabsInfo.activeTabId}
                     onOpen={handleTabOpen}
@@ -26,9 +26,12 @@ const WikiHome = () => {
                     homeIcon={'wiki'}
                 />
             </div>
-            {/* <Filter />
-            <Table tableData={explorer}/> */}
-            <BlogCreator />
+            <div className="wiki-content-parent-wrapper">
+                {tabsInfo.activeTabId === 'home' && <><Filter />
+                    <Table tableData={explorer} /></>
+                }
+                {/* <BlogCreator /> */}
+            </div>
         </>
     )
 }

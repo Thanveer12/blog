@@ -12,6 +12,31 @@
     border: 0.1px solid #2f3741;
     display: flex;
 
+    .table-header-modified{
+      width: 170px;
+      padding: 8px 31px 0 20px;
+
+      display: flex;
+      gap: 45px;
+      span{
+        padding: 0;
+        border: 0 !important;
+        width: 0 !important;
+      }
+      border-right: 0.1px solid #2f3741;
+
+      .modified-down-arrow{
+        cursor: pointer;
+          width: 12px !important;
+          height: 12px;
+          transition: 300ms all;
+          background: #b1b2b3;
+          mask: url("../../icons/icon-arrow.svg") no-repeat center center;
+          -webkit-mask: url("../../icons/icon-arrow.svg") no-repeat center center;
+          padding-top: 4px;
+      }
+
+    }
     span {
       padding: 8px 31px 0 20px;
       text-align: left;

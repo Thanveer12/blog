@@ -35,9 +35,8 @@
       height: 18px;
       transition: 300ms all;
       background: #b1b2b3;
+      -webkit-mask: url("./icons/btn-with-active-share.svg") no-repeat center center;
       mask: url("./icons/btn-with-active-share.svg") no-repeat center center;
-      -webkit-mask: url("./icons/btn-with-active-share.svg") no-repeat center
-        center;
     }
   }
 }

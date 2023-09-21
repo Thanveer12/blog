@@ -64,7 +64,10 @@ const Table = ({ tableData }) => {
                 <span>Documents</span>
                 <span>Tags</span>
                 <span>Owner</span>
-                <span>Modified</span>
+                <div className='table-header-modified'>
+                <span>Modified </span>
+                <span className='modified-down-arrow'></span>
+                </div>
                 <span>Actions</span>
             </div>
             <div className='table-list-items-wrapper'>
