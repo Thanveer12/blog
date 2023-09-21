@@ -48,7 +48,7 @@ const Filter = () => {
                                 e.stopPropagation();
                                 setOpenSettingOption(prev => !prev)
                                 setOpenFolderSettingPane(true)
-                            }}>manage Folder</span>
+                            }}>Manage Folder</span>
                 </div>}
                 {openFolderSettingPane && 
                     <ClickOutSideListener onOutsideClick={() => {setOpenFolderSettingPane(false)}}>
