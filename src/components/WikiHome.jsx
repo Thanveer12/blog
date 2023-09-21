@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import BlogCreator from "./BlogCreator/BlogCreator";
 import { useTabContext } from "../Context/TabContext";
 import Table from "./Datatable/table";
-import {explorer} from "./TableData/tableData";
+import {explorer} from "./Datatable/tableData";
 import Tabs from "./Tabs/Tabs";
 import Filter from "./WikiFilter/Filter";
 import Blog from './Blog/Blog'
-import './WikiHome.scss';
+import style from './WikiHome.module.scss';
+import Tabview from "./tabview/tabview";
+import {useFilterContext } from "../Context/FilterContext";
 
 const WikiHome = () => {
     const { tabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange, openBlogEditorTab,
@@ -14,9 +16,11 @@ const WikiHome = () => {
 
    
 
+    const { enableListMode } = useFilterContext()
+
     return (
         <>
-            <div className="wiki-app-sub-header">
+            <div className={style["wiki-app-sub-header"]}>
                 <Tabs tabs={tabsInfo.tabs}   // state variable
                     activeTabId={tabsInfo.activeTabId}
                     onOpen={handleTabOpen}
@@ -32,16 +36,18 @@ const WikiHome = () => {
                     onPublish={handleTabEdit}
                 />
             </div>
-            {(tabsInfo.activeTabId === 'home' || openBlogTab) && <div className="wiki-content-parent-wrapper">
-                {tabsInfo.activeTabId === 'home' &&
-                    <>
-                        <Filter />
-                        <Table tableData={explorer} />
-                    </>
-                }
-                {openBlogTab && <Blog blogData={explorer[0]} />}
+            {(tabsInfo.activeTabId === 'home' || openBlogTab) &&
 
-            </div>}
+                <div className={style["wiki-content-parent-wrapper"]}>
+                    {tabsInfo.activeTabId === 'home' &&
+                        <>
+                            <Filter />
+                            {enableListMode ? <Table tableData={explorer} /> : <div className={style["tab-view"]}><Tabview tableData={explorer} /></div>}
+                        </>
+                    }
+                    {openBlogTab && <Blog blogData={explorer[0]} />}
+
+                </div>}
             {openBlogEditorTab && <BlogCreator />}
         </>
     )

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './table.scss';
+import style from './table.module.scss';
 import Tags from "../Tags/Tags"
 import Owner from '../Owner/Owner';
 import { useTabContext } from '../../Context/TabContext';
@@ -8,25 +8,25 @@ const RenderTable = ({ item, click }) => {
     const [expanded, setExpanded] = useState(false);
     if (item.isFolder) {
         return (
-            <div className='table-list-items-folder'>
-                <div className='table-folder-header'>
-                    <span className='folder-wrapper-name' onClick={() => setExpanded(!expanded)}>
-                        <span className={expanded ? 'arrow-down-icon' : 'arrow-icon'} />
-                        <span className='file-icon' />
-                        <span className='file-name'> {item.name}</span>
+            <div className={style['table-list-items-folder']}>
+                <div className={style['table-folder-header']}>
+                    <span className={style['folder-wrapper-name']} onClick={() => setExpanded(!expanded)}>
+                        <span className={expanded ? style['arrow-down-icon'] : style['arrow-icon']} />
+                        <span className={style['file-icon']} />
+                        <span className={style['file-name']}> {item.name}</span>
                     </span>
-                    <div className='metaTags-wrapper'></div>
+                    <div className={style['metaTags-wrapper']}></div>
 
-                    <div className='owner-wrapper'>
+                    <div className={style['owner-wrapper']}>
                         <Owner ownerData={item.owner} />
                     </div>
 
-                    <div className='modified-wrapper'>July 23, 2023 &middot; 09:18 AM</div>
-                    <div className='action-wrapper'></div>
+                    <div className={style['modified-wrapper']}>July 23, 2023 &middot; 09:18 AM</div>
+                    <div className={style['action-wrapper']}></div>
                 </div>
 
 
-                <div className='table-folder-wrapper' style={{ display: expanded ? 'block' : 'none' }}>  {
+                <div className={style['table-folder-wrapper']} style={{ display: expanded ? 'block' : 'none' }}>  {
                     item.items.map((subItem) => {
                         return <RenderTable item={subItem} key={subItem.id} click={click} />
                     })
@@ -35,19 +35,19 @@ const RenderTable = ({ item, click }) => {
             </div>
         )
     }
-    else return <div className='table-list-items-files' onClick={() => click(item.name, item.id, item)}>
-        <span className='name-icon-wrapper'>
-            <span className='file-icon'></span>
-            <span className='file-name'>{item.name}</span>
+    else return <div className={style['table-list-items-files']} onClick={() => click(item.name, item.id, item)}>
+        <span className={style['name-icon-wrapper']}>
+            <span className={style['file-icon']}></span>
+            <span className={style['file-name']}>{item.name}</span>
         </span>
-        <span className='metaTags-wrapper'>{
+        <span className={style['metaTags-wrapper']}>{
             <Tags tags={item.tags} />
         }</span>
-        <span className='owner-wrapper'>
+        <span className={style['owner-wrapper']}>
             <Owner ownerData={item.owner} />
         </span>
-        <span className='modified-wrapper'>July 23, 2023 &middot; 09:18 AM</span>
-        <span className='action-wrapper'>actions</span>
+        <span className={style['modified-wrapper']}>July 23, 2023 &middot; 09:18 AM</span>
+        <span className={style['action-wrapper']}>actions</span>
     </div>
 
 }
@@ -63,18 +63,18 @@ const Table = ({ tableData }) => {
     }
 
     return (
-        <div className='table-parent-wrapper'>
-            <div className='table-header'>
+        <div className={style['table-parent-wrapper']}>
+            <div className={style['table-header']}>
                 <span>Documents</span>
                 <span>Tags</span>
                 <span>Owner</span>
-                <div className='table-header-modified'>
+                <div className={style['table-header-modified']}>
                 <span>Modified </span>
-                <span className='modified-down-arrow'></span>
+                <span className={style['modified-down-arrow']}></span>
                 </div>
                 <span>Actions</span>
             </div>
-            <div className='table-list-items-wrapper'>
+            <div className={style['table-list-items-wrapper']}>
                 {
                     tableData.map(item => (
                         <RenderTable key={item.id} item={item} click={click} />

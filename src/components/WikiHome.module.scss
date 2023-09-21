@@ -9,5 +9,13 @@
 }
 
 .wiki-content-parent-wrapper{
-    padding: 30px 57px;
+    padding: 23px 57px;
+
+
+    .tab-view{
+        display: flex;
+    flex-wrap: wrap;
+    gap: 29px;
+    padding: 13px;
+    }
 }

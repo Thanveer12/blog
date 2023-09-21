@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Steno } from 'react-steno';
-import './BlogCreator.scss';
+import style from './BlogCreator.module.scss';
 import Compressor from 'compressorjs';
 import ClickOutSideListener from '../ClickOutSideListener';
 import EditorToolBar from '../EditorToolbar/EditorToolbar';
@@ -174,7 +174,7 @@ const BlogCreator = ({blog}) => {
     }
 
     return (
-        <div className="wiki-blog-creator-container">
+        <div className={style["wiki-blog-creator-container"]}>
             <EditorToolBar
                 innerEditorRef={activeEditorInnerRef}
                 activeEditorRef={activeEditorRef}
@@ -183,8 +183,8 @@ const BlogCreator = ({blog}) => {
                 fontSize={activeEditor === "title" ? fontTitleSize : fontDescriptionSize}
                 setFontSize={activeEditor === 'title' ? setFontTitleSize : setFontDescriptionSize}
             />
-            <div className="wiki-blog-creator-body">
-                <div className="wiki-blog-title-steno">
+            <div className={style["wiki-blog-creator-body"]}>
+                <div className={style["wiki-blog-title-steno"]}>
                     {<Steno
                         html={title}
                         disable={false}
@@ -228,16 +228,17 @@ const BlogCreator = ({blog}) => {
 
                     />}
                 </div>
-                <div className={"wiki-blog-image" + (formDataImage ? ' wiki-image-update' : '')}>
-                    <input type="file" accept="image/jpg, image/jpeg, image/svg" id='wiki-file-input' onChange={(e) => handleFileChange(e, 'featuredImage')} />
-                    <form className={formDataImage ? 'wiki-file-form' : ''} style={{ background: 'url(' + formDataImage + ') no-repeat center center' }}>
-                        {!formDataImage && <label className='wiki-image-upload' htmlFor="wiki-file-input">Upload Image</label>}
-                        {formDataImage && <><span className='wiki-dot-container'><span className='wiki-3-dot' onClick={(e) => {
+                <div className={style["wiki-blog-image"] + (formDataImage ? style[' wiki-image-update'] : '')}>
+                    <input type="file" accept="image/jpg, image/jpeg, image/svg" id={style['wiki-file-input']} onChange={(e) => handleFileChange(e, 'featuredImage')} />
+                    <form className={formDataImage ? style['wiki-file-form'] : ''} style={{ background: 'url(' + formDataImage + ') no-repeat center center' }}>
+                        {!formDataImage && <label className={style['wiki-image-upload']} htmlFor="wiki-file-input">Upload Image</label>}
+                        {formDataImage && <><span className={style['wiki-dot-container']}><span className={style['wiki-3-dot']} onClick={(e) => {
                             e.stopPropagation();
                             setOpenImageMenu(prev => !prev)
 
                         }}></span></span>
-                            {openImageMenu && <ClickOutSideListener onOutsideClick={() => setOpenImageMenu(false)}> <div className='wiki-image-option'>
+                            {openImageMenu && <ClickOutSideListener onOutsideClick={() => setOpenImageMenu(false)}> 
+                            <div className={style['wiki-image-option']}>
                                 <label htmlFor='wiki-file-input'>Upload New</label> <br />
                                 <label onClick={() => {
                                     setIsEditImage(true);
@@ -250,27 +251,27 @@ const BlogCreator = ({blog}) => {
                     {isEditImage && <ImageCrop props={formDataImage} hooksChange={getEditedImage} crop={isImageEditing} />}
                 </div>
                 <div className="wiki-blog-tag">
-                    {!openTag && <button className='wiki-tag-creation' onClick={() => setOpenTag(true)} > Add Tags</button>}
+                    {!openTag && <button className={style['wiki-tag-creation']} onClick={() => setOpenTag(true)} > Add Tags</button>}
                     {openTag &&
-                        <div className={'field-wrapper' + ' ' + 'topics-wrapper'}>
-                            <div className={'tag-inner'} onClick={(e) => handleCapsuleInputFocus(e, 'tag')}>
+                        <div className={style['field-wrapper'] + ' ' + style['topics-wrapper']}>
+                            <div className={style['tag-inner']} onClick={(e) => handleCapsuleInputFocus(e, 'tag')}>
                                 {wikiTag &&
                                     wikiTag.map((obj, index) => (
-                                        <div key={index} className={'tag-box'}>
-                                            <div className={'tag-text'}>{obj}</div>
-                                            <button className={'btn-close'} onClick={(e) => handleCapsuleInputClose(e, index, 'topics')}></button>
+                                        <div key={index} className={style['tag-box']}>
+                                            <div className={style['tag-text']}>{obj}</div>
+                                            <button className={style['btn-close']} onClick={(e) => handleCapsuleInputClose(e, index, 'topics')}></button>
                                         </div>
                                     ))
                                 }
 
-                                <div className={'topic-input'}>
-                                    <input type='text' ref={tagRef} className={'topic-input'} placeholder='Search or add new' onKeyUp={(event) => { onKeyUpEvent(event, 'tag') }}></input>
+                                <div className={style['topic-input']}>
+                                    <input type='text' ref={tagRef} className={style['topic-input']} placeholder='Search or add new' onKeyUp={(event) => { onKeyUpEvent(event, 'tag') }}></input>
                                 </div>
                             </div>
                         </div>
                     }
                 </div>
-                <div className="wiki-blog-description-steno">
+                <div className={style["wiki-blog-description-steno"]}>
                     {<Steno
                         html={description}
                         disable={false}

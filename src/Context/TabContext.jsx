@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, useRef } from "react"
+import { createContext, useContext, useState, useRef } from "react"
 
 const TabsContext = createContext();
 
@@ -51,8 +51,8 @@ export const TabContext = ({ children }) => {
         if (tabId.toString() !== tabsInfo.activeTabId) {
 
             // Do not execute the function if active tab is clicked again
+            if (openBlogEditorTab) setOpenBlogEditorTab(false)
             if (tabId === 'home') {
-                if (openBlogEditorTab) setOpenBlogEditorTab(false)
                 if (openBlogTab) setOpenBlogTab(false)
 
             }
@@ -152,9 +152,12 @@ export const TabContext = ({ children }) => {
 
     function handleTabAddBtn(title, id, topics) {
 
+        if(!title || !id || !topics){ // ! change codition later when APIs are available
+
+            setOpenBlogEditorTab(true)
+        }
         if (openBlogTab) setOpenBlogTab(false)
 
-        setOpenBlogEditorTab(true)
 
         if (topics?.name.length > 40) {
             title += ` - ${topics?.name.substring(0, 40)} ...`;
