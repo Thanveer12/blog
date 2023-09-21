@@ -75,7 +75,7 @@
     padding: 0;
     width: 20px;
     height: 20px;
-    background:#707070;
+    background:#707070 !important;
     mask: url("../../icons/icon-flip-horizontal.png") no-repeat center center;
     mask-size: 16px;
   }
@@ -84,7 +84,7 @@
     width: 20px;
     height: 20px;
     padding: 0;
-    background:#707070;
+    background:#707070 !important;
     mask: url("../../icons/icon-flip-vertical.png") no-repeat center center;
     mask-size: 16px;
   }
@@ -93,12 +93,12 @@
     width: 30px;
     height: 30px;
     padding: 0;
-    background:#707070;
+    background:#707070 !important;
     mask: url("../../icons/icon_rotate_right.svg") no-repeat center center;
     mask-size: 20px;
   }
   .wiki-left-rotate-button {
-    background:#707070;
+    background:#707070 !important;
     padding: 0;
     width: 30px;
     height: 30px;

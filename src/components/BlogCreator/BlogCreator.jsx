@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Steno } from 'react-steno';
 import style from './BlogCreator.module.scss';
 import Compressor from 'compressorjs';
@@ -7,20 +7,19 @@ import EditorToolBar from '../EditorToolBar/EditorToolBar';
 import { useTabContext } from '../../Context/TabContext';
 import ImageCrop from '../ImageCrop/ImageCrop';
 
-const BlogCreator = () => {
-
+const BlogCreator = ({blog}) => {
     const { title, setTitle, description, setDescription, undoHistory } = useTabContext()
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
     const descriptionFnRef = useRef(null);
     const titleFnRef = useRef(null);
     const [dimension, setDimension] = useState({ width: 0, height: 0 });
-    const [formDataImage, setFormDataImage] = useState('');
+    const [formDataImage, setFormDataImage] = useState(blog ? blog.img_url : '');
     const [image, setImage] = useState('');
     const [openImageMenu, setOpenImageMenu] = useState(false);
-    const [wikiTag, setWikiTag] = useState([])
+    const [wikiTag, setWikiTag] = useState(blog ? blog.tag : [])
     const tagRef = useRef(null);
-    const [openTag, setOpenTag] = useState(false);
+    const [openTag, setOpenTag] = useState(blog ? true : false);
     const [activeEditorRef, setActiveEditorRef] = useState();
     const [descriptionAlignment, setDescriptionAlignment] = useState('left')
     const [fontDescriptionSize, setFontDescriptionSize] = useState(24);
@@ -28,6 +27,12 @@ const BlogCreator = () => {
     const [activeEditor, setActiveEditor] = useState('');
     const [activeEditorInnerRef, setActiveEditorInnerRef] = useState('');
     const [isEditImage, setIsEditImage] = useState(false);
+
+    useEffect(() => {
+        setTitle(blog ? blog.title : '');
+        setDescription(blog ? blog.description : '');
+        console.log(wikiTag);
+    },[])
 
     function handleFileChange(e, type) {
         e.preventDefault();
@@ -252,7 +257,7 @@ const BlogCreator = () => {
                             <div className={style['tag-inner']} onClick={(e) => handleCapsuleInputFocus(e, 'tag')}>
                                 {wikiTag &&
                                     wikiTag.map((obj, index) => (
-                                        <div key={obj.id} className={style['tag-box']}>
+                                        <div key={index} className={style['tag-box']}>
                                             <div className={style['tag-text']}>{obj}</div>
                                             <button className={style['btn-close']} onClick={(e) => handleCapsuleInputClose(e, index, 'topics')}></button>
                                         </div>
