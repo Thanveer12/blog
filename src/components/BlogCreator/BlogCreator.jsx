@@ -5,6 +5,7 @@ import Compressor from 'compressorjs';
 import ClickOutSideListener from '../ClickOutSideListener';
 import EditorToolBar from '../EditorToolbar/EditorToolbar';
 import { useTabContext } from '../../Context/TabContext';
+import ImageCrop from '../ImageCrop/ImageCrop';
 
 const BlogCreator = () => {
 
@@ -26,6 +27,7 @@ const BlogCreator = () => {
     const [fontTitleSize, setFontTitleSize] = useState(11);
     const [activeEditor, setActiveEditor] = useState('');
     const [activeEditorInnerRef, setActiveEditorInnerRef] = useState('');
+    const [isEditImage, setIsEditImage] = useState(false);
 
     function handleFileChange(e, type) {
         e.preventDefault();
@@ -151,6 +153,21 @@ const BlogCreator = () => {
         }
     }
 
+    const isImageEditing = () => {
+        setIsEditImage(false);
+    }
+
+    const getEditedImage = (file) => {
+        if (file && file.size < 8000000) {
+            let updatedForm ;//= {...formData};
+            updatedForm = URL.createObjectURL(file);
+            imageCompressor(file);
+            setImage(file);
+            setFormDataImage(updatedForm);
+            console.log('file', file);
+        }
+    }
+
     return (
         <div className="wiki-blog-creator-container">
             <EditorToolBar
@@ -217,12 +234,15 @@ const BlogCreator = () => {
                         }}></span></span>
                             {openImageMenu && <ClickOutSideListener onOutsideClick={() => setOpenImageMenu(false)}> <div className='wiki-image-option'>
                                 <label htmlFor='wiki-file-input'>Upload New</label> <br />
-                                <label>Edit</label> <br />
+                                <label onClick={() => {
+                                    setIsEditImage(true);
+                                }}>Edit</label> <br />
                                 <label onClick={handleDeleteSelectImage}>Delete</label>
                             </div>
                             </ClickOutSideListener>}
                         </>}
                     </form>
+                    {isEditImage && <ImageCrop props={formDataImage} hooksChange={getEditedImage} crop={isImageEditing} />}
                 </div>
                 <div className="wiki-blog-tag">
                     {!openTag && <button className='wiki-tag-creation' onClick={() => setOpenTag(true)} > Add Tags</button>}
