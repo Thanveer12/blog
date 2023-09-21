@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useRef } from "react"
+import { createContext, useContext, useState, useEffect, useRef } from "react"
 
 const TabsContext = createContext();
 
@@ -11,6 +11,10 @@ export const useTabContext = () => {
 export const TabContext = ({ children }) => {
 
     const currentTabId = useRef()
+    const [undoHistory, setUndoHistory] = useState([]);
+    const [redoHistory, setRedoHistory] = useState([]);
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
 
 
     const [tabsInfo, setTabsInfo] = useState({
@@ -33,7 +37,7 @@ export const TabContext = ({ children }) => {
             else {
                 currentTabId.current = +tabId;
                 // if (tabsInfo && !tabsInfo.tabs.filter(item => +item.id === currentTabId.current).length)
-                    // AddOrRemoveTab(+tabId, true)
+                // AddOrRemoveTab(+tabId, true)
                 // dispatch({ type: actionType.open_ticket_tab, payload: true })
             }
 
@@ -205,7 +209,12 @@ export const TabContext = ({ children }) => {
 
     return (
         <TabsContext.Provider
-            value={{ tabsInfo, setTabsInfo, handleTabAddBtn, handleTabsOrderChange, handleTabRemove, handleTabOpen}}
+            value={{
+                tabsInfo, setTabsInfo, handleTabAddBtn,
+                handleTabsOrderChange, handleTabRemove, handleTabOpen,
+                undoHistory, setUndoHistory, redoHistory, setRedoHistory,
+                title, setTitle, description, setDescription
+            }}
         >
             {children}
         </TabsContext.Provider>
