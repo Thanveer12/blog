@@ -3,7 +3,7 @@ import { Steno } from 'react-steno';
 import './BlogCreator.scss';
 import Compressor from 'compressorjs';
 import ClickOutSideListener from '../ClickOutSideListener';
-import EditorToolBar from '../EditorToolBar/EditorToolBar';
+import EditorToolBar from '../EditorToolbar/EditorToolbar';
 import { useTabContext } from '../../Context/TabContext';
 import ImageCrop from '../ImageCrop/ImageCrop';
 
