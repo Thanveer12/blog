@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BlogCreator from "./BlogCreator/BlogCreator";
 import { useTabContext } from "../Context/TabContext";
 import Table from "./Datatable/table";
-import explorer from "./Datatable/tableData";
+import {explorer} from "./Datatable/tableData";
 import Tabs from "./Tabs/Tabs";
 import Filter from "./WikiFilter/Filter";
 import Blog from './Blog/Blog'
@@ -11,8 +11,10 @@ import Tabview from "./tabview/tabview";
 import {useFilterContext } from "../Context/FilterContext";
 
 const WikiHome = () => {
-    const { tabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange, openBlogEditorTab
-        , openBlogTab } = useTabContext()
+    const { tabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange, openBlogEditorTab,
+         openBlogTab, handleTabEdit } = useTabContext();
+
+   
 
     const { enableListMode } = useFilterContext()
 
@@ -30,6 +32,8 @@ const WikiHome = () => {
                     showEditBtn={true}
                     backgroundColor={'transparent'}
                     homeIcon={'wiki'}
+                    onEdit={handleTabEdit}
+                    onPublish={handleTabEdit}
                 />
             </div>
             {(tabsInfo.activeTabId === 'home' || openBlogTab) &&

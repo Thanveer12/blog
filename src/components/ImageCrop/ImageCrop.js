@@ -6,7 +6,7 @@ import './ImageCrop.scss';
 const radian = Math.PI / 180;
 
 export default function ImageCrop(modalOpen) {
-    const [crop, setCrop] = useState({ x: 10, y: 10, width: 1200, height: 650 });
+    const [crop, setCrop] = useState({ x: 10, y: 10, width: 700, height: 280 });
     const [cropimg, setcropimg] = useState();
     const [zoom, setZoom] = useState(1);
     const [modal, setModal] = useState(true);
