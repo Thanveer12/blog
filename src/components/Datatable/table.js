@@ -53,8 +53,12 @@ const RenderTable = ({ item, click }) => {
 }
 const Table = ({ tableData }) => {
 
-    const { tabsInfo, setTabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange } = useTabContext()
+    const { handleTabAddBtn,
+    setOpenBlogTab
+    } = useTabContext()
+
     const click = (name, id, item) => {
+        setOpenBlogTab(true)
         handleTabAddBtn(name, id, item)
     }
 
