@@ -100,10 +100,10 @@ export default function Tabs({ tabs, activeTabId, onOpen, onEdit, onPublish, onR
     }
 
     const handleModeChangeBtnClick = (tab, isInEditmode) => {
-
         if (isInEditmode) {
             onPublish(tab.id);
         } else {
+            console.log(tab.id)
             onEdit(tab.id);
             // also open the plotterPanel in Edit mode if not opened already
             if (tab.hasOwnProperty('showPlotterPanel') && !tab.showPlotterPanel) { onPanelToggle(tab.id, 'showPlotterPanel') }

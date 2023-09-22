@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import AvatarSection from './AvatarSection/AvatarSection'
 import Tags from '../Tags/Tags'
 import Comments from './Comments/Comments'

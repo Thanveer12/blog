@@ -35,15 +35,12 @@ export const TabContext = ({ children }) => {
     const handleTabEdit = (tab) => {
         const allTabData = {...tabsInfo}
         allTabData?.tabs?.forEach((tabs) => {
-            if (+tabs.id === +tab) {
+            if (tabs.id === tab) {
                 tabs.editMode = !tabs.editMode;
                 setEditMode(tabs.editMode)
             }
         })
         setTabsInfo(allTabData);
-
-        console.log(allTabData)
-        console.log(tab);
     }
 
     async function handleTabOpen(tabId) {
