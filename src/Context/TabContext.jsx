@@ -259,7 +259,8 @@ export const TabContext = ({ children }) => {
                 handleTabEdit,
                 getBlogData,
                 setBlogData,
-                editMode
+                editMode,
+                setEditMode
             }}
         >
             {children}
