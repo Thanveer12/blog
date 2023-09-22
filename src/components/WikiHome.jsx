@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import BlogCreator from "./BlogCreator/BlogCreator";
 import { useTabContext } from "../Context/TabContext";
 import Table from "./Datatable/table";
@@ -13,10 +13,7 @@ import {useFilterContext } from "../Context/FilterContext";
 const WikiHome = () => {
     const { tabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange, openBlogEditorTab,
          openBlogTab, handleTabEdit } = useTabContext();
-
-   
-
-    const { enableListMode } = useFilterContext()
+    const { enableListMode } = useFilterContext();
 
     return (
         <>
