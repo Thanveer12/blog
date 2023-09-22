@@ -2,17 +2,18 @@ import React from "react";
 import BlogCreator from "./BlogCreator/BlogCreator";
 import { useTabContext } from "../Context/TabContext";
 import Table from "./Datatable/table";
-import {explorer} from "./Datatable/tableData";
+import { explorer } from "./Datatable/tableData";
 import Tabs from "./Tabs/Tabs";
 import Filter from "./WikiFilter/Filter";
 import Blog from './Blog/Blog'
 import style from './WikiHome.module.scss';
 import Tabview from "./tabview/tabview";
-import {useFilterContext } from "../Context/FilterContext";
+import { useFilterContext } from "../Context/FilterContext";
 
 const WikiHome = () => {
-    const { tabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange, openBlogEditorTab,
-         openBlogTab, handleTabEdit } = useTabContext();
+    const { tabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange,
+        openBlogEditorTab,
+        openBlogTab, handleTabEdit } = useTabContext();
     const { enableListMode } = useFilterContext();
 
     return (
@@ -39,7 +40,8 @@ const WikiHome = () => {
                     {tabsInfo.activeTabId === 'home' &&
                         <>
                             <Filter />
-                            {enableListMode ? <Table tableData={explorer} /> : <div className={style["tab-view"]}><Tabview tableData={explorer} /></div>}
+                            {enableListMode ? <Table tableData={explorer} /> :
+                                <div className={style["tab-view"]}><Tabview tableData={explorer} /></div>}
                         </>
                     }
                     {openBlogTab && <Blog blogData={explorer[0]} />}

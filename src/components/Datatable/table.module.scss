@@ -1,5 +1,5 @@
 .table-parent-wrapper {
-  padding: 1%;
+  padding: 3px 67px;
   display: flex;
   justify-content: center;
   display: flex;
@@ -12,30 +12,32 @@
     border: 0.1px solid #2f3741;
     display: flex;
 
-    .table-header-modified{
+    .table-header-modified {
       width: 170px;
       padding: 8px 31px 0 20px;
 
       display: flex;
       gap: 45px;
-      span{
+      span {
         padding: 0;
         border: 0 !important;
         width: 0 !important;
       }
       border-right: 0.1px solid #2f3741;
 
-      .modified-down-arrow{
+      .modified-down-arrow {
         cursor: pointer;
-          width: 12px !important;
-          height: 12px;
-          transition: 300ms all;
-          background: #b1b2b3;
-          -webkit-mask: url("../../icons/icon-arrow.svg") no-repeat center center;
-          mask: url("../../icons/icon-arrow.svg") no-repeat center center;
-          padding-top: 4px;
+        width: 12px !important;
+        height: 12px;
+        transition: 300ms all;
+        background: #b1b2b3;
+        -webkit-mask: url("../../icons/icon-arrow.svg") no-repeat center center;
+        mask: url("../../icons/icon-arrow.svg") no-repeat center center;
+        padding-top: 4px;
       }
-
+    }
+    .table-header-action {
+      padding-right: 0 !important;
     }
     span {
       padding: 8px 31px 0 20px;
@@ -77,8 +79,6 @@
           -webkit-mask: url("../../icons/icon-page.svg") no-repeat center center;
           mask: url("../../icons/icon-page.svg") no-repeat center center;
         }
-
-        
       }
     }
 
@@ -96,7 +96,57 @@
         flex-wrap: wrap;
       }
       .action-wrapper {
-        padding-right: 30px !important;
+        display: flex;
+        padding-right: 9px !important;
+        padding-left: 10px !important;
+        align-items: center;
+        gap: 8px;
+
+        .action-icon {
+          cursor: pointer;
+          width: 20px;
+          height: 15px;
+          transition: 300ms all;
+          background: #b1b2b3;
+          padding: 0 !important;
+          display: none;
+          
+        }
+        .share-icon {
+          -webkit-mask: url("../../icons/btn-with-active-share.svg") no-repeat
+            center center;
+          mask: url("../../icons/btn-with-active-share.svg") no-repeat center
+            center;
+        }
+        .edit-icon {
+          -webkit-mask: url("../../icons/icon-edit.svg") no-repeat center center;
+          mask: url("../../icons/icon-edit.svg") no-repeat center center;
+        }
+        .archive-icon {
+          -webkit-mask: url("../../icons/Icon-archive.svg") no-repeat center
+            center;
+          mask: url("../../icons/Icon-archive.svg") no-repeat center center;
+        }
+        .delete-icon {
+          -webkit-mask: url("../../icons/icon-delete.svg") no-repeat center
+            center;
+          mask: url("../../icons/icon-delete.svg") no-repeat center center;
+        }
+        .setting-icon {
+          -webkit-mask: url("../../icons/icon-setting.svg") no-repeat center
+            center;
+          mask: url("../../icons/icon-setting.svg") no-repeat center center;
+        }
+
+        &:hover{
+          .action-icon{
+            display: block;
+          }
+        }
+      }
+
+      .modified-wrapper{
+
       }
 
       span:first-child {
@@ -111,12 +161,13 @@
 
     .table-list-items-folder {
       flex-direction: column;
+      cursor: pointer;
 
       .table-folder-header {
         display: flex;
         align-items: center;
 
-        .metaTags-wrapper{
+        .metaTags-wrapper {
           height: 32px !important;
           width: 280.51px;
           border-right: 0.1px solid #2f3741;
@@ -128,7 +179,9 @@
           display: flex;
           gap: 5px;
           .file-name,
-          .file-icon, .arrow-icon, .arrow-down-icon {
+          .file-icon,
+          .arrow-icon,
+          .arrow-down-icon {
             padding: 0 !important;
           }
           .file-icon {
@@ -138,21 +191,23 @@
             transition: 300ms all;
             background: #b1b2b3;
             -webkit-mask: url("../../icons/icon-folder.svg") no-repeat center
-            center;
+              center;
             mask: url("../../icons/icon-folder.svg") no-repeat center center;
           }
 
-          .arrow-icon{
+          .arrow-icon {
             transform: rotate(270deg);
           }
 
-          .arrow-icon,.arrow-down-icon {
+          .arrow-icon,
+          .arrow-down-icon {
             cursor: pointer;
             width: 12px;
             height: 12px;
             transition: 300ms all;
             background: #b1b2b3;
-            -webkit-mask: url("../../icons/icon-arrow.svg") no-repeat center center;
+            -webkit-mask: url("../../icons/icon-arrow.svg") no-repeat center
+              center;
             mask: url("../../icons/icon-arrow.svg") no-repeat center center;
           }
         }
@@ -162,7 +217,7 @@
           padding-left: 20px;
           padding-right: 10px;
         }
-        .owner-wrapper{
+        .owner-wrapper {
           width: 236px;
           border-right: 0.1px solid #2f3741;
           height: 32px !important;
@@ -173,10 +228,19 @@
           height: 32px !important;
           border-right: 0.1px solid #2f3741;
           padding-left: 19px;
+        }
+        .folder-action-wrapper {
+          display: flex;
 
+          &:hover{
+            .action-icon{
+              display: block;
+            }
+          }
         }
         div:last-child {
           width: 140px;
+          height: 12px;
         }
       }
 
