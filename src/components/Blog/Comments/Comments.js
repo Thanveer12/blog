@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Avatar from '../../Avatar/Avatar'
 import style from './comments.module.scss'
+
 
 const Comment = ({ user, commentList }) => {
 
@@ -30,6 +31,8 @@ const Comments = ({ commentData }) => {
     const [inputComment, setInputComment] = useState('')
     const [commentList, setCommentist] = useState([{message:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'}])
     const { owner } = commentData;
+    const commentRef=useRef('');
+
 
     const handleEnter = (e) => {
         if (+e.keyCode === 13) {
@@ -37,13 +40,17 @@ const Comments = ({ commentData }) => {
                 message: inputComment
             }])
 
+
+
             setInputComment('')
         }
     }
 
+   
+
 
     return (
-        <div className={style['comments-parent-wrapper']}>
+        <div ref={commentRef} className={style['comments-parent-wrapper']}>
             <input value={inputComment} placeholder='Comment' onChange={(e) => setInputComment(e.target.value)} onKeyDown={(e) => handleEnter(e)} />
             {commentList.map((item, index) => <Comment key={index} user={owner} commentList={item} />)}
         </div>
