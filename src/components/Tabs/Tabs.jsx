@@ -1,6 +1,11 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import './Tabs.scss';
+import ArticleTypeOption from './ArticleTypeOption';
+import ClickOutsideListener from '../ClickOutSideListener';
+import { useTabContext } from '../../Context/TabContext';
+
+
 
 const key = [...Array(26)].map((_, i) => String.fromCharCode(i + 65));
 
@@ -24,6 +29,7 @@ const reorder = (list, startIndex, endIndex) => {
 };
 
 export default function Tabs({ tabs, activeTabId, onOpen, onEdit, onPublish, onRemove, onPanelToggle, onTabAddBtn, onTabsOrderChange, showEditBtn = true, showAddBtn = true, showAvatar = false, backgroundColor = '', homeIcon }) {
+    const { openArticleTypeMenuDropdown, setOpenArticleTypeMenuDropdown } = useTabContext();
     const tabContainerRef = useRef(null);
     const [dummy, setDummy] = useState(0); // for rendering whenever tab length changes so that view gets updated
 
@@ -216,7 +222,7 @@ export default function Tabs({ tabs, activeTabId, onOpen, onEdit, onPublish, onR
                                                                         lastName={tab.hasOwnProperty('lastName') ? tab.lastName : tab.name.split(' ')[1]}
                                                                         alt={tab.hasOwnProperty('firstName') ? tab.firstName : tab.name.split(' ')[0] + "'s pic"}
                                                                     />}
-                                                                    {homeIcon === 'wiki' && <span className='tab-icon-paper'></span>}
+                                                                {homeIcon === 'wiki' && <span className='tab-icon-paper'></span>}
                                                                 {showName && <span className="tab-title">{tab.name}</span>}
                                                                 {isSelected && showEditBtn &&
                                                                     <div className={'tab-selection'}>
@@ -234,7 +240,7 @@ export default function Tabs({ tabs, activeTabId, onOpen, onEdit, onPublish, onR
                                                             </div>
                                                             {homeIcon === 'wiki' && <span className='wiki-separator'></span>}
                                                         </div>
-                                                        
+
                                                     </>
                                                 )}
                                             </Draggable>
@@ -252,8 +258,16 @@ export default function Tabs({ tabs, activeTabId, onOpen, onEdit, onPublish, onR
             </DragDropContext>
 
             {showAddBtn && <div className="add-dash-btn-wrapper">
-                <button className="btn-link btn-newanalysis" onClick={onTabAddBtn}></button>
+                <button className="btn-link btn-newanalysis" onClick={(e)=>{e.stopPropagation();onTabAddBtn()}}>
+
+                </button>
             </div>}
+            {
+                openArticleTypeMenuDropdown &&
+                <ClickOutsideListener onOutsideClick={() => setOpenArticleTypeMenuDropdown(false)}>
+                    <ArticleTypeOption />
+                </ClickOutsideListener>
+            }
 
         </div>
     );

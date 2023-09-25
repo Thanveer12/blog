@@ -72,7 +72,7 @@ const Table = ({ tableData }) => {
 
     const click = (name, id, item) => {
         setOpenBlogTab(true)
-        handleTabAddBtn(name, id, item)
+        handleTabAddBtn(name, id, item, true)
     }
 
     return (

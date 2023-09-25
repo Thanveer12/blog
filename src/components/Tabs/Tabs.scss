@@ -474,12 +474,13 @@ $add-btn-width: 40px;
   }
 
   .add-dash-btn-wrapper {
-    position: static;
+    position: relative;
     padding-left: 10px;
     display: flex;
     align-items: center;
 
     .btn-newanalysis {
+      position: relative;
       background-color: transparent;
       mask: url(../../icons/icon-plus-lite.svg) no-repeat center center;
       mask-size: 10px;
