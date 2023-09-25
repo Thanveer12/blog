@@ -20,6 +20,7 @@ export default function ImageEditing(modalOpen) {
     const topRightRef = useRef();
     const bottomLeftRef = useRef();
     const bottomRightRef = useRef();
+    const [isRotate, setIsRotate] = useState(false)
 
     const toggleModal = () => {
         modalOpen.hooksChange(cropImage);
@@ -168,32 +169,32 @@ export default function ImageEditing(modalOpen) {
             // let x = resizable.clientWidth - e.clientX;
             // let y = resizable.clientHeight - e.clientY;
             // mouseDownData = e;
-            
-                // resizable.style.height = `calc(100% - ${y}px)`;
-                if (resizable.clientHeight - y > height && resizable.clientHeight - y < height + 40) {
-                // resizable.style.height = resizable.clientHeight - y + 'px';
-                    resizable.style.height = `calc(100% - ${y}px)`;
-                    const data = resizable.clientHeight - resizable.style.height;
-                    console.log('Height:', y)
-                }
-                if (resizable.clientWidth - x > width && resizable.clientWidth - x < width + 40) {
-                    // resizable.style.width = resizable.clientWidth - x + 'px';
-                    resizable.style.width = `calc(100% - ${x}px)`;
-                    const data = resizable.clientWidth - resizable.style.width;
 
-                    console.log('Width:', x)
-                }
-                if (y < 0) debugger
-                if (y < 0 && y > -40 || x < 0 && x > -40) {
-                    let averageXY = Math.abs((y + x) / 2);
-                    let zoomVal = (averageXY / 20) + 1;
-                    setZoom(zoomVal)
-                }
-                if (y >= 0 && x >= 0) {
-                    setZoom(1);
-                }
-            
-            
+            // resizable.style.height = `calc(100% - ${y}px)`;
+            if (resizable.clientHeight - y > height && resizable.clientHeight - y < height + 40) {
+                // resizable.style.height = resizable.clientHeight - y + 'px';
+                resizable.style.height = `calc(100% - ${y}px)`;
+                const data = resizable.clientHeight - resizable.style.height;
+                console.log('Height:', y)
+            }
+            if (resizable.clientWidth - x > width && resizable.clientWidth - x < width + 40) {
+                // resizable.style.width = resizable.clientWidth - x + 'px';
+                resizable.style.width = `calc(100% - ${x}px)`;
+                const data = resizable.clientWidth - resizable.style.width;
+
+                console.log('Width:', x)
+            }
+            if (y < 0) debugger
+            if (y < 0 && y > -40 || x < 0 && x > -40) {
+                let averageXY = Math.abs((y + x) / 2);
+                let zoomVal = (averageXY / 20) + 1;
+                setZoom(zoomVal)
+            }
+            if (y >= 0 && x >= 0) {
+                setZoom(1);
+            }
+
+
         }
 
     }
@@ -209,7 +210,7 @@ export default function ImageEditing(modalOpen) {
         // e.preventDefault();
         mouseDownData = e;
         isMouseClicked = true;
-        
+
         window.addEventListener('mousemove', handleMouseMoveForImageResizer);
         window.addEventListener('mouseup', handleMouseUpForImageResizer);
     }
@@ -228,6 +229,24 @@ export default function ImageEditing(modalOpen) {
         }
     }, [rotateimg])
 
+    const rotateImage = ()=>{
+
+        setIsRotate(true)
+
+        let angle = 0;
+        const centerX = window.innerWidth / 2;
+        const centerY = window.innerHeight / 2;
+    
+        document.addEventListener("mousemove", (e) => {
+    
+            const deltaX = e.clientX - centerX;
+            const deltaY = e.clientY - centerY;
+            angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+    
+            console.log(angle)
+
+        });
+    }
     return (
         <div>
             {modal && (
@@ -235,17 +254,19 @@ export default function ImageEditing(modalOpen) {
                     <div onClick={setModal} className={'wiki-overlay'}></div>
 
                     <div className={'wiki-modal-content-crop'}>
-                    <div className="resizable" id="resizable" >
-                    <div className='resizers'>
+                        <div className="resizable" id="resizable" >
+                            <div className='resizers'>
                                 <div className='resizer top-left' ref={topLeftRef} onMouseDown={handleMouseDownForImageResizer}></div>
                                 <div className='resizer top-right' ref={topRightRef} onMouseDown={handleMouseDownForImageResizer}></div>
                                 <div className='resizer bottom-left' ref={bottomLeftRef} onMouseDown={handleMouseDownForImageResizer}></div>
                                 <div className='resizer bottom-right' ref={bottomRightRef} onMouseDown={handleMouseDownForImageResizer}></div>
+                                <div className='resizer rotate' onMouseDown={rotateImage}></div>
+
                             </div>
                         </div>
                         <div className={'wiki-search-list'}>
                             {/* <div className="resizable"> */}
-                            
+
                             {/* </div> */}
                             <div className={'wiki-info-inner'}>
                                 {rotateimg && <Cropper
@@ -265,7 +286,7 @@ export default function ImageEditing(modalOpen) {
                             <span className={'wiki-btn-close'} onClick={closeModal}></span>
                         </div>
                         <div className="wiki-save-content">
-                            <button className="wiki-save"  onClick={toggleModal}>save</button>
+                            <button className="wiki-save" onClick={toggleModal}>save</button>
                             <button className="wiki-cancel" onClick={closeModal}>cancel</button>
                         </div>
                     </div>

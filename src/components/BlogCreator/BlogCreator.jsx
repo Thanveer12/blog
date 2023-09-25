@@ -3,12 +3,12 @@ import { Steno } from 'react-steno';
 import style from './BlogCreator.module.scss';
 import Compressor from 'compressorjs';
 import ClickOutSideListener from '../ClickOutSideListener';
-import EditorToolBar from '../EditorToolbar/EditorToolbar';
+import EditorToolBar from '../EditorToolBar/EditorToolBar';
 import { useTabContext } from '../../Context/TabContext';
 import ImageCrop from '../ImageCrop/ImageCrop';
 import ImageEditing from '../ImageCrop/ImageEditing';
 
-const BlogCreator = ({blog}) => {
+const BlogCreator = ({ blog }) => {
     const { title, setTitle, description, setDescription, undoHistory } = useTabContext()
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
@@ -33,7 +33,7 @@ const BlogCreator = ({blog}) => {
         setTitle(blog ? blog.title : '');
         setDescription(blog ? blog.description : '');
         console.log(wikiTag);
-    },[])
+    }, [])
 
     function handleFileChange(e, type) {
         e.preventDefault();
@@ -73,6 +73,11 @@ const BlogCreator = ({blog}) => {
             }
             imageCompressor(file);
         }
+
+
+       
+
+
     }
 
     const imageCompressor = (file) => {
@@ -165,7 +170,7 @@ const BlogCreator = ({blog}) => {
 
     const getEditedImage = (file) => {
         if (file && file.size < 8000000) {
-            let updatedForm ;//= {...formData};
+            let updatedForm;//= {...formData};
             updatedForm = URL.createObjectURL(file);
             imageCompressor(file);
             setImage(file);
@@ -173,6 +178,10 @@ const BlogCreator = ({blog}) => {
             console.log('file', file);
         }
     }
+
+    
+
+
 
     return (
         <div className={style["wiki-blog-creator-container"]}>
@@ -231,6 +240,7 @@ const BlogCreator = ({blog}) => {
                 </div>
                 <div className={`${style["wiki-blog-image"]}  ${formDataImage ? style['wiki-image-update'] : ''}`}>
                     <input type="file" accept="image/jpg, image/jpeg, image/svg" className={style['wiki-file-input-class']} id='wiki-file-input' onChange={(e) => handleFileChange(e, 'featuredImage')} />
+
                     <form className={formDataImage ? style['wiki-file-form'] : ''} style={{ background: 'url(' + formDataImage + ') no-repeat center center' }}>
                         {!formDataImage && <label className={style['wiki-image-upload']} htmlFor="wiki-file-input">Upload Image</label>}
                         {formDataImage && <><span className={style['wiki-dot-container']}><span className={style['wiki-3-dot']} onClick={(e) => {
@@ -238,14 +248,14 @@ const BlogCreator = ({blog}) => {
                             setOpenImageMenu(prev => !prev)
 
                         }}></span></span>
-                            {openImageMenu && <ClickOutSideListener onOutsideClick={() => setOpenImageMenu(false)}> 
-                            <div className={style['wiki-image-option']}>
-                                <label htmlFor='wiki-file-input'>Upload New</label> <br />
-                                <label onClick={() => {
-                                    setIsEditImage(true);
-                                }}>Edit</label> <br />
-                                <label onClick={handleDeleteSelectImage}>Delete</label>
-                            </div>
+                            {openImageMenu && <ClickOutSideListener onOutsideClick={() => setOpenImageMenu(false)}>
+                                <div className={style['wiki-image-option']}>
+                                    <label htmlFor='wiki-file-input'>Upload New</label> <br />
+                                    <label onClick={() => {
+                                        setIsEditImage(true);
+                                    }}>Edit</label> <br />
+                                    <label onClick={handleDeleteSelectImage}>Delete</label>
+                                </div>
                             </ClickOutSideListener>}
                         </>}
                     </form>
