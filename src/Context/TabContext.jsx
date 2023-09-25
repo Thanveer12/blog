@@ -22,6 +22,8 @@ export const TabContext = ({ children }) => {
     const [redoHistory, setRedoHistory] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [openArticleTypeMenuDropdown,setOpenArticleTypeMenuDropdown]=useState(false)
+    const [isVideoArticle,setIsVideoArticle]=useState(false)
 
 
     const [tabsInfo, setTabsInfo] = useState({
@@ -147,8 +149,7 @@ export const TabContext = ({ children }) => {
         setTabsInfo(updatedTabsInfo);
     }
 
-    function handleTabAddBtn(title, id, topics) {
-
+    const openEditorTab = (title, id, topics)=>{
         if(!title || !id || !topics){ // ! change codition later when APIs are available
 
             setOpenBlogEditorTab(true)
@@ -239,9 +240,13 @@ export const TabContext = ({ children }) => {
 
         // props.history.push("/supportcenter/t-" + id);
     }
+    function handleTabAddBtn(title, id, topics) {
+
+        setOpenArticleTypeMenuDropdown(true)
+
+    }
 
 
-    // !
     return (
         <TabsContext.Provider
             value={{
@@ -257,7 +262,11 @@ export const TabContext = ({ children }) => {
                 getBlogData,
                 setBlogData,
                 editMode,
-                setEditMode
+                setEditMode,
+                openArticleTypeMenuDropdown,
+                setOpenArticleTypeMenuDropdown,
+                isVideoArticle,setIsVideoArticle,
+                openEditorTab
             }}
         >
             {children}

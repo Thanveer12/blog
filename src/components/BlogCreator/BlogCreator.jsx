@@ -9,7 +9,7 @@ import ImageCrop from '../ImageCrop/ImageCrop';
 import ImageEditing from '../ImageCrop/ImageEditing';
 
 const BlogCreator = ({ blog }) => {
-    const { title, setTitle, description, setDescription, undoHistory } = useTabContext()
+    const { title, setTitle, description, setDescription, undoHistory,isVideoArticle } = useTabContext()
     const titleRef = useRef(null);
     const descriptionRef = useRef(null);
     const descriptionFnRef = useRef(null);
@@ -242,7 +242,7 @@ const BlogCreator = ({ blog }) => {
                     <input type="file" accept="image/jpg, image/jpeg, image/svg" className={style['wiki-file-input-class']} id='wiki-file-input' onChange={(e) => handleFileChange(e, 'featuredImage')} />
 
                     <form className={formDataImage ? style['wiki-file-form'] : ''} style={{ background: 'url(' + formDataImage + ') no-repeat center center' }}>
-                        {!formDataImage && <label className={style['wiki-image-upload']} htmlFor="wiki-file-input">Upload Image</label>}
+                        {!formDataImage && <label className={style['wiki-image-upload']} htmlFor="wiki-file-input">{`Upload ${isVideoArticle ?'Video' :'Image'}`}</label>}
                         {formDataImage && <><span className={style['wiki-dot-container']}><span className={style['wiki-3-dot']} onClick={(e) => {
                             e.stopPropagation();
                             setOpenImageMenu(prev => !prev)
@@ -251,9 +251,9 @@ const BlogCreator = ({ blog }) => {
                             {openImageMenu && <ClickOutSideListener onOutsideClick={() => setOpenImageMenu(false)}>
                                 <div className={style['wiki-image-option']}>
                                     <label htmlFor='wiki-file-input'>Upload New</label> <br />
-                                    <label onClick={() => {
+                                    {isVideoArticle && <><label onClick={() => {
                                         setIsEditImage(true);
-                                    }}>Edit</label> <br />
+                                    }}>Edit</label> <br /></>}
                                     <label onClick={handleDeleteSelectImage}>Delete</label>
                                 </div>
                             </ClickOutSideListener>}
