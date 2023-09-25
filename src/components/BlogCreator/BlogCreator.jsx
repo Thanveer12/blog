@@ -22,8 +22,8 @@ const BlogCreator = ({blog}) => {
     const [openTag, setOpenTag] = useState(blog ? true : false);
     const [activeEditorRef, setActiveEditorRef] = useState();
     const [descriptionAlignment, setDescriptionAlignment] = useState('left')
-    const [fontDescriptionSize, setFontDescriptionSize] = useState(24);
-    const [fontTitleSize, setFontTitleSize] = useState(11);
+    const [fontDescriptionSize, setFontDescriptionSize] = useState(11);
+    const [fontTitleSize, setFontTitleSize] = useState(24);
     const [activeEditor, setActiveEditor] = useState('');
     const [activeEditorInnerRef, setActiveEditorInnerRef] = useState('');
     const [isEditImage, setIsEditImage] = useState(false);
