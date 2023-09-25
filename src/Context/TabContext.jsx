@@ -240,11 +240,16 @@ export const TabContext = ({ children }) => {
 
         // props.history.push("/supportcenter/t-" + id);
     }
-    function handleTabAddBtn(title, id, topics) {
+    function handleTabAddBtn(title, id, topics, isFileOpen) {
 
         setOpenArticleTypeMenuDropdown(true)
 
+        if(isFileOpen){
+            openEditorTab(title,id,topics)
+        }
+
     }
+
 
 
     return (
