@@ -251,7 +251,7 @@ const BlogCreator = ({ blog }) => {
                             {openImageMenu && <ClickOutSideListener onOutsideClick={() => setOpenImageMenu(false)}>
                                 <div className={style['wiki-image-option']}>
                                     <label htmlFor='wiki-file-input'>Upload New</label> <br />
-                                    {isVideoArticle && <><label onClick={() => {
+                                    {!isVideoArticle && <><label onClick={() => {
                                         setIsEditImage(true);
                                     }}>Edit</label> <br /></>}
                                     <label onClick={handleDeleteSelectImage}>Delete</label>
