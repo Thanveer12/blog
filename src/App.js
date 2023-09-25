@@ -1,7 +1,7 @@
 
 import './App.css';
 import Main from './components/Main';
-import explorer from "./components/Datatable/tableData"
+// import explorer from "./components/Datatable/tableData"
 
 
 function App() {
@@ -11,8 +11,6 @@ function App() {
 
     <div className="App" >
       <Main />
-
-
     </div>
   );
 }

@@ -8,6 +8,7 @@
 
   .table-header {
     height: 32px;
+    width: -moz-fit-content;
     width: fit-content;
     border: 0.1px solid #2f3741;
     display: flex;
@@ -53,6 +54,7 @@
 
   .table-list-items-wrapper {
     font-size: 12px;
+    width: -moz-fit-content;
     width: fit-content;
     color: #b1b2b3;
 
@@ -263,12 +265,13 @@
       width: 100%;
       display: flex;
       min-height: 32px;
+      height: -moz-fit-content;
       height: fit-content;
 
       span {
         text-align: left;
         padding: 2px 31px 2px 20px;
-        height: initial;
+        height: initial; 
         align-items: center;
       }
     }
