@@ -5,7 +5,10 @@ import Owner from '../Owner/Owner';
 import { useTabContext } from '../../Context/TabContext';
 
 const RenderTable = ({ item, click }) => {
+
     const [expanded, setExpanded] = useState(false);
+
+  
     if (item.isFolder) {
         return (
             <div className={style['table-list-items-folder']}>
@@ -22,7 +25,11 @@ const RenderTable = ({ item, click }) => {
                     </div>
 
                     <div className={style['modified-wrapper']}>July 23, 2023 &middot; 09:18 AM</div>
-                    <div className={style['action-wrapper']}></div>
+                    <div className={`${style['folder-action-wrapper']} ${style['action-wrapper']}`}>
+                        <span className={`${style['setting-icon']}  ${style['action-icon']}`}></span>
+                        <span className={`${style['archive-icon']}  ${style['action-icon']}`}></span>
+                        <span className={`${style['delete-icon']}  ${style['action-icon']}`}></span>
+                    </div>
                 </div>
 
 
@@ -35,8 +42,8 @@ const RenderTable = ({ item, click }) => {
             </div>
         )
     }
-    else return <div className={style['table-list-items-files']} onClick={() => click(item.name, item.id, item)}>
-        <span className={style['name-icon-wrapper']}>
+    else return <div className={style['table-list-items-files']}>
+        <span className={style['name-icon-wrapper']} onClick={() => click(item.name, item.id, item)}>
             <span className={style['file-icon']}></span>
             <span className={style['file-name']}>{item.name}</span>
         </span>
@@ -47,14 +54,20 @@ const RenderTable = ({ item, click }) => {
             <Owner ownerData={item.owner} />
         </span>
         <span className={style['modified-wrapper']}>July 23, 2023 &middot; 09:18 AM</span>
-        <span className={style['action-wrapper']}>actions</span>
+        <span className={style['action-wrapper']}>
+            <span className={`${style['share-icon']}  ${style['action-icon']}`}></span>
+            <span className={`${style['edit-icon']}  ${style['action-icon']}`}></span>
+            <span className={`${style['archive-icon']}  ${style['action-icon']}`}></span>
+            <span className={`${style['delete-icon']}  ${style['action-icon']}`}></span>
+
+        </span>
     </div>
 
 }
 const Table = ({ tableData }) => {
 
     const { handleTabAddBtn,
-    setOpenBlogTab
+        setOpenBlogTab
     } = useTabContext()
 
     const click = (name, id, item) => {
@@ -69,10 +82,10 @@ const Table = ({ tableData }) => {
                 <span>Tags</span>
                 <span>Owner</span>
                 <div className={style['table-header-modified']}>
-                <span>Modified </span>
-                <span className={style['modified-down-arrow']}></span>
+                    <span>Modified </span>
+                    <span className={style['modified-down-arrow']}></span>
                 </div>
-                <span>Actions</span>
+                <span className={style['table-header-action']}>Actions</span>
             </div>
             <div className={style['table-list-items-wrapper']}>
                 {
