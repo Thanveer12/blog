@@ -6,9 +6,10 @@ import './ImageCrop.scss';
 const radian = Math.PI / 180;
 let mouseDownData;
 let isMouseClicked = false;
+let isRotateMouseClicked = false;
 
 export default function ImageEditing(modalOpen) {
-    const [crop, setCrop] = useState({ x: 10, y: 10, width: 700, height: 280 });
+    const [crop, setCrop] = useState({ x: 10, y: 10, width: 700, height: 300 });
     const [cropimg, setcropimg] = useState();
     const [zoom, setZoom] = useState(1);
     const [modal, setModal] = useState(true);
@@ -20,7 +21,6 @@ export default function ImageEditing(modalOpen) {
     const topRightRef = useRef();
     const bottomLeftRef = useRef();
     const bottomRightRef = useRef();
-    const [isRotate, setIsRotate] = useState(false)
     const resizeRef = useRef('')
 
     const toggleModal = () => {
@@ -196,16 +196,20 @@ export default function ImageEditing(modalOpen) {
             }
 
 
-        }
-        else if (isRotate) {
+        } else if (isRotateMouseClicked) {
+            const arrowRects = resizeRef.current.getBoundingClientRect();
+            const centerX = arrowRects.left + arrowRects.width / 2;
+            const centerY = arrowRects.top + arrowRects.height / 2;
             let angle = 0;
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
+            // const centerX = window.innerWidth / 2;
+            // const centerY = window.innerHeight / 2;
 
             // document.addEventListener("mousemove", (e) => {
 
-            const deltaX = e.clientX - centerX;
-            const deltaY = e.clientY - centerY;
+            // const deltaX = e.clientX - centerX;
+            // const deltaY = e.clientY - centerY;
+            const deltaX = e.pageX - centerX;
+            const deltaY = e.pageY - centerY;
             angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
 
             setRotate(angle)
@@ -220,7 +224,7 @@ export default function ImageEditing(modalOpen) {
     const handleMouseUpForImageResizer = (e) => {
         e.preventDefault();
         isMouseClicked = false;
-        setIsRotate(true);
+        isRotateMouseClicked = false;
         window.removeEventListener('mousemove', handleMouseMoveForImageResizer);
         window.removeEventListener('mouseup', handleMouseUpForImageResizer);
     }
@@ -235,25 +239,11 @@ export default function ImageEditing(modalOpen) {
 
     }
 
-    useEffect(() => {
-        // topLeftRef.current.addEventListener('mousedown', handleMouseDownForImageResizer);
-        // topRightRef.current.addEventListener('mousedown', handleMouseDownForImageResizer);
-        // bottomLeftRef.current.addEventListener('mousedown', handleMouseDownForImageResizer);
-        // bottomRightRef.current.addEventListener('mousedown', handleMouseDownForImageResizer);
-
-        return () => {
-            // topLeftRef.current.removeEventListener('mousedown', handleMouseDownForImageResizer);
-            // topRightRef.current.removeEventListener('mousedown', handleMouseDownForImageResizer);
-            // bottomLeftRef.current.removeEventListener('mousedown', handleMouseDownForImageResizer);
-            // bottomRightRef.current.removeEventListener('mousedown', handleMouseDownForImageResizer);
-        }
-    }, [rotateimg])
 
     const rotateImage = () => {
 
-        setIsRotate(true)
-        document.addEventListener("mousemove",
-            handleMouseMoveForImageResizer)
+        isRotateMouseClicked = true;
+        document.addEventListener("mousemove", handleMouseMoveForImageResizer)
 
         window.addEventListener('mouseup', handleMouseUpForImageResizer);
 
@@ -263,7 +253,7 @@ export default function ImageEditing(modalOpen) {
     return (
         <div>
             {modal && (
-                <div className={'wiki-modal'}>
+                <div className={'wiki-modal' + (isRotateMouseClicked ? ' wiki-rotate-pointer': '')}>
                     <div onClick={setModal} className={'wiki-overlay'}></div>
 
                     <div className={'wiki-modal-content-crop'}>
@@ -301,6 +291,10 @@ export default function ImageEditing(modalOpen) {
                         <div className="wiki-save-content">
                             <button className="wiki-save" onClick={toggleModal}>save</button>
                             <button className="wiki-cancel" onClick={closeModal}>cancel</button>
+                            <button onClick={() => {
+                                setZoom(1);
+                                setRotate(0);
+                            }}>Reset</button>
                         </div>
                     </div>
                 </div>
