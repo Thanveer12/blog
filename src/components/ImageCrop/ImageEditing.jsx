@@ -21,6 +21,7 @@ export default function ImageEditing(modalOpen) {
     const bottomLeftRef = useRef();
     const bottomRightRef = useRef();
     const [isRotate, setIsRotate] = useState(false)
+    const resizeRef = useRef('')
 
     const toggleModal = () => {
         modalOpen.hooksChange(cropImage);
@@ -196,12 +197,30 @@ export default function ImageEditing(modalOpen) {
 
 
         }
+        else if (isRotate) {
+            let angle = 0;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+
+            // document.addEventListener("mousemove", (e) => {
+
+            const deltaX = e.clientX - centerX;
+            const deltaY = e.clientY - centerY;
+            angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+
+            setRotate(angle)
+            resizeRef.current.style.transform = `rotate(${angle}deg)`;
+            console.log(angle)
+
+            // });
+        }
 
     }
 
     const handleMouseUpForImageResizer = (e) => {
         e.preventDefault();
         isMouseClicked = false;
+        setIsRotate(true);
         window.removeEventListener('mousemove', handleMouseMoveForImageResizer);
         window.removeEventListener('mouseup', handleMouseUpForImageResizer);
     }
@@ -213,6 +232,7 @@ export default function ImageEditing(modalOpen) {
 
         window.addEventListener('mousemove', handleMouseMoveForImageResizer);
         window.addEventListener('mouseup', handleMouseUpForImageResizer);
+
     }
 
     useEffect(() => {
@@ -229,24 +249,17 @@ export default function ImageEditing(modalOpen) {
         }
     }, [rotateimg])
 
-    const rotateImage = ()=>{
+    const rotateImage = () => {
 
         setIsRotate(true)
+        document.addEventListener("mousemove",
+            handleMouseMoveForImageResizer)
 
-        let angle = 0;
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
-    
-        document.addEventListener("mousemove", (e) => {
-    
-            const deltaX = e.clientX - centerX;
-            const deltaY = e.clientY - centerY;
-            angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-    
-            console.log(angle)
+        window.addEventListener('mouseup', handleMouseUpForImageResizer);
 
-        });
+
     }
+
     return (
         <div>
             {modal && (
@@ -254,7 +267,7 @@ export default function ImageEditing(modalOpen) {
                     <div onClick={setModal} className={'wiki-overlay'}></div>
 
                     <div className={'wiki-modal-content-crop'}>
-                        <div className="resizable" id="resizable" >
+                        <div className="resizable" id="resizable"  ref={resizeRef}>
                             <div className='resizers'>
                                 <div className='resizer top-left' ref={topLeftRef} onMouseDown={handleMouseDownForImageResizer}></div>
                                 <div className='resizer top-right' ref={topRightRef} onMouseDown={handleMouseDownForImageResizer}></div>
