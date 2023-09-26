@@ -32,7 +32,7 @@ const BlogCreator = ({ blog }) => {
     useEffect(() => {
         setTitle(blog ? blog.title : '');
         setDescription(blog ? blog.description : '');
-        console.log(wikiTag);
+
     }, [])
 
     function handleFileChange(e, type) {
