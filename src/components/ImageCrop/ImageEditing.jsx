@@ -9,7 +9,7 @@ let isMouseClicked = false;
 let isRotateMouseClicked = false;
 
 export default function ImageEditing(modalOpen) {
-    const [crop, setCrop] = useState({ x: 10, y: 10, width: 700, height: 300 });
+    const [crop, setCrop] = useState({ x: 10, y: 10, width: 700, height: 280 });
     const [cropimg, setcropimg] = useState();
     const [zoom, setZoom] = useState(1);
     const [modal, setModal] = useState(true);
