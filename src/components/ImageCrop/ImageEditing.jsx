@@ -286,11 +286,11 @@ export default function ImageEditing(modalOpen) {
                             </div>
 
 
-                            <span className={'wiki-btn-close'} onClick={closeModal}></span>
+                            {/* <span className={'wiki-btn-close'} onClick={closeModal}></span> */}
                         </div>
                         <div className="wiki-save-content">
-                            <button className="wiki-save" onClick={toggleModal}>save</button>
-                            <button className="wiki-cancel" onClick={closeModal}>cancel</button>
+                            <button className="wiki-save" onClick={toggleModal}>Save</button>
+                            <button className="wiki-cancel" onClick={closeModal}>Cancel</button>
                             <button onClick={() => {
                                 setZoom(1);
                                 setRotate(0);
