@@ -184,14 +184,14 @@ const BlogCreator = ({ blog }) => {
 
     return (
         <div className={style["wiki-blog-creator-container"]}>
-            <EditorToolBar
+           {activeEditor === 'description' && <EditorToolBar
                 innerEditorRef={activeEditorInnerRef}
                 activeEditorRef={activeEditorRef}
                 alignment={setDescriptionAlignment}
                 activeState={activeEditor}
                 fontSize={activeEditor === "title" ? fontTitleSize : fontDescriptionSize}
                 setFontSize={activeEditor === 'title' ? setFontTitleSize : setFontDescriptionSize}
-            />
+            />}
             <div className={style["wiki-blog-creator-body"]}>
                 <div className={style["wiki-blog-title-steno"]}>
                     {<Steno
