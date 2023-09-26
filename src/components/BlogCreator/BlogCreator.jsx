@@ -5,7 +5,6 @@ import Compressor from 'compressorjs';
 import ClickOutSideListener from '../ClickOutSideListener';
 import EditorToolBar from '../EditorToolBar/EditorToolBar';
 import { useTabContext } from '../../Context/TabContext';
-import ImageCrop from '../ImageCrop/ImageCrop';
 import ImageEditing from '../ImageCrop/ImageEditing';
 
 const BlogCreator = ({ blog }) => {
@@ -259,7 +258,6 @@ const BlogCreator = ({ blog }) => {
                             </ClickOutSideListener>}
                         </>}
                     </form>
-                    {isEditImage && <ImageCrop props={formDataImage} hooksChange={getEditedImage} crop={isImageEditing} />}
                     {isEditImage && <ImageEditing props={formDataImage} hooksChange={getEditedImage} crop={isImageEditing} />}
                 </div>
                 <div className={style["wiki-blog-tag"]}>

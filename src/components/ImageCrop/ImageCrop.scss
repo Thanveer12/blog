@@ -283,11 +283,6 @@ user-select: none;
   cursor: url("../../icons/icon_rotate_left.svg") 16 16, auto;
 }
 
-.wiki-rotate-pointer {
-  cursor: url("../../icons/icon_rotate_right.svg") 16 16, auto;
-
-}
-
 .wiki-save-content {
   position: absolute;
   bottom: 20px;
@@ -299,6 +294,12 @@ user-select: none;
 button {
   cursor: pointer;
   background-color: #B1B2B3;
+  border: none;
+  border-radius: 2px;
 }
+}
+.wiki-rotate-pointer {
+  cursor: url("../../icons/icon_rotate_right.svg") 16 16, auto;
+
 }
 
