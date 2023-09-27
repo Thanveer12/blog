@@ -2,6 +2,7 @@ import React, { memo, useEffect, useState } from "react"
 import './UserList.scss';
 import SpeedSelect from 'react-speedselect';
 import Avatar from "../Avatar/Avatar";
+import ClickOutSideListener from "../ClickOutSideListener";
 
 const role = [
     {
@@ -57,8 +58,11 @@ const UserList = ({userDetail}) => {
                 {!openNameSearch && <button className="wiki-user-create" onClick={(e) => {
                         e.stopPropagation();
                         setOpenNameSearch(true)
-                    }}> Folder</button>}
-                    {openNameSearch && <input type={'text'} className={'wiki-user-create-input'} placeholder="Type Name or Email Id" autoFocus/>}
+                    }}> User</button>}
+                    <ClickOutSideListener onOutsideClick={() => setOpenNameSearch(false)}>
+                        {openNameSearch && <input type={'text'} className={'wiki-user-create-input'} placeholder="Type Name or Email Id" autoFocus/>}
+                    </ClickOutSideListener>
+
             </div>
             {userInfo.map((user) => {
                 return (<div className="wiki-user-data-wrapper">

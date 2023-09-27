@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import ClickOutSideListener from "../ClickOutSideListener";
 import style from './FolderSetting.module.scss';
 import UserList from "./UserList";
 
@@ -180,7 +181,9 @@ const FolderSetting = () => {
                         e.stopPropagation();
                         setOpenFolderSearch(true)
                     }}> Folder</button>}
-                    {openFolderSearch && <input type={'text'} className={style['wiki-folder-create-input']} placeholder="Type Here" autoFocus/>}
+                    <ClickOutSideListener onOutsideClick={() => setOpenFolderSearch (false)}>
+                        {openFolderSearch && <input type={'text'} className={style['wiki-folder-create-input']} placeholder="Type Here" autoFocus/>}
+                    </ClickOutSideListener>
                         {folderList.map((list, index) => {
                             return (
                                 <div className={style["wiki-list-wrapper"]} key={index + list.name}>
