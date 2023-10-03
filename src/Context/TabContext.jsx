@@ -242,8 +242,8 @@ export const TabContext = ({ children }) => {
     }
     function handleTabAddBtn(title, id, topics, isFileOpen) {
 
-        setOpenArticleTypeMenuDropdown(true)
-
+        
+        if(!title && !id && !topics ) setOpenArticleTypeMenuDropdown(true)
         if(isFileOpen){
             openEditorTab(title,id,topics)
         }

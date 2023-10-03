@@ -258,16 +258,18 @@ export default function Tabs({ tabs, activeTabId, onOpen, onEdit, onPublish, onR
             </DragDropContext>
 
             {showAddBtn && <div className="add-dash-btn-wrapper">
-                <button className="btn-link btn-newanalysis" onClick={(e)=>{e.stopPropagation();onTabAddBtn()}}>
+                <button className="btn-link btn-newanalysis" onClick={(e) => { e.stopPropagation(); onTabAddBtn() }}>
 
                 </button>
+
+                {
+                    openArticleTypeMenuDropdown &&
+                    <ClickOutsideListener onOutsideClick={() => setOpenArticleTypeMenuDropdown(false)}>
+                        <ArticleTypeOption />
+                    </ClickOutsideListener>
+                }
+
             </div>}
-            {
-                openArticleTypeMenuDropdown &&
-                <ClickOutsideListener onOutsideClick={() => setOpenArticleTypeMenuDropdown(false)}>
-                    <ArticleTypeOption />
-                </ClickOutsideListener>
-            }
 
         </div>
     );
