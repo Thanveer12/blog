@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import BlogCreator from "./BlogCreator/BlogCreator";
 import { useTabContext } from "../Context/TabContext";
 import Table from "./Datatable/table";
@@ -9,12 +9,14 @@ import Blog from './Blog/Blog'
 import style from './WikiHome.module.scss';
 import Tabview from "./tabview/tabview";
 import { useFilterContext } from "../Context/FilterContext";
+import Tables from "./Datatable/Tables";
 
 const WikiHome = () => {
     const { tabsInfo, handleTabAddBtn, handleTabRemove, handleTabOpen, handleTabsOrderChange,
         openBlogEditorTab,
         openBlogTab, handleTabEdit } = useTabContext();
     const { enableListMode } = useFilterContext();
+    const [data, setData] = useState(explorer)
 
     return (
         <>
@@ -40,7 +42,7 @@ const WikiHome = () => {
                     {tabsInfo.activeTabId === 'home' &&
                         <>
                             <Filter />
-                            {enableListMode ? <Table tableData={explorer} /> :
+                            {enableListMode ? <Tables tableData={data} setData={setData} /> :
                                 <div className={style["tab-view"]}><Tabview tableData={explorer} /></div>}
                         </>
                     }

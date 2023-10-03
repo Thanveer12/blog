@@ -3,12 +3,15 @@ import style from './table.module.scss';
 import Tags from "../Tags/Tags"
 import Owner from '../Owner/Owner';
 import { useTabContext } from '../../Context/TabContext';
+import { random } from 'lodash';
+import { useFilterContext } from '../../Context/FilterContext';
 
 let isClickedObject;
 const RenderTable = ({ item, click, setTableData, tableList, folderData }) => {
 
     const [expanded, setExpanded] = useState(false);
-    const [reRender, setRerender] = useState(true);
+    const {setRerender} = useFilterContext();
+    
     const fileRef = useRef();
 
     const onDragStart = (e) => {
@@ -16,14 +19,19 @@ const RenderTable = ({ item, click, setTableData, tableList, folderData }) => {
         e.dataTransfer.setData("Text",JSON.stringify(isClickedObject));
     }
 
+    const removeDuplicateEntry = (data) => {
+        const jsonObject = data.map(JSON.stringify);
+        const uniqueUserSet = new Set(jsonObject);
+        const uniqueUser = Array.from(uniqueUserSet).map(JSON.parse);
+        return uniqueUser;
+    }
+
     const getDropLocation = (event, data) => {
         const eventWrapper = event;
         if (eventWrapper.id === 'wiki-file-list' && eventWrapper.parentNode?.id === 'wiki-container-list') {
-            let dropData = {
-                event: eventWrapper,
-                type: 'file'
-            }
-            return dropData;
+            let tableDatas = tableList;
+            tableDatas.push(data.item);
+            return tableDatas;
         } else if (eventWrapper.id?.includes('wiki-folder-list') && eventWrapper.parentNode?.id === 'wiki-container-list') {
             let dropData = {
                 event: eventWrapper,
@@ -35,12 +43,15 @@ const RenderTable = ({ item, click, setTableData, tableList, folderData }) => {
             let length = tableDatas.length;
             for (let i = 0; i < length; i++) {
                 let arrData = tableDatas[i];
-                if (arrData.id === getFolderId) {
-                    arrData.items = [...arrData.items, data.item];
-                } else if (arrData.id === data.item.id) {
+                if (arrData.id === data.item.id) {
                     tableDatas.splice(i, 1);
                     i -= 1;
                     length = tableDatas.length;
+                } else if (arrData.id === getFolderId) {
+                    // arrData.items 
+                    tableDatas[i].items= [...arrData.items, data.item];
+                    debugger
+                    tableDatas[i].items = removeDuplicateEntry(tableDatas[i].items)
                 }
             }
             return tableDatas;
@@ -51,6 +62,7 @@ const RenderTable = ({ item, click, setTableData, tableList, folderData }) => {
     
     const onDragDrop = (event) => {
         // console.log('onDragDrop', event)
+        debugger
         event.preventDefault();
         let data = event.dataTransfer.getData("Text");
         data = JSON.parse(data);
@@ -75,7 +87,7 @@ const RenderTable = ({ item, click, setTableData, tableList, folderData }) => {
   
     if (item.isFolder) {
         return (
-            <div className={style['table-list-items-folder']} id={`wiki-folder-list${item.id}`} onDragEnter={onDragEnter} onDrop={onDragDrop} onDragOver={onDragEnter}>
+            <div className={style['table-list-items-folder']} id={`wiki-folder-list${item.id}`} onDrop={onDragDrop} onDragOver={onDragEnter}>
                 <div className={style['table-folder-header']}>
                     <span className={style['folder-wrapper-name']} onClick={() => setExpanded(!expanded)}>
                         <span className={expanded ? style['arrow-down-icon'] : style['arrow-icon']} />
@@ -106,7 +118,7 @@ const RenderTable = ({ item, click, setTableData, tableList, folderData }) => {
             </div>
         )
     }
-    else return <div className={style['table-list-items-files']} id='wiki-file-list' draggable onDragStart={onDragStart} onDragOver={onDragEnter} onDragEnter={onDragEnter} onDrop={onDragDrop} onMouseDown={() => {getTabelItem()}}>
+    else return <div className={style['table-list-items-files']} id='wiki-file-list' draggable onDragStart={onDragStart} onDragOver={onDragEnter} onDrop={onDragDrop} onMouseDown={() => {getTabelItem()}}>
         <span className={style['name-icon-wrapper']} onClick={() => click(item.name, item.id, item)}>
             <span className={style['file-icon']}></span>
             <span className={style['file-name']}>{item.name}</span>
@@ -128,49 +140,5 @@ const RenderTable = ({ item, click, setTableData, tableList, folderData }) => {
     </div>
 
 }
-const Table = ({ tableData, setData }) => {
 
-    const [tableList, setTableList] = useState(tableData ? tableData : []);
-
-    const { handleTabAddBtn,
-        setOpenBlogTab
-    } = useTabContext()
-
-    const click = (name, id, item) => {
-        setOpenBlogTab(true)
-        handleTabAddBtn(name, id, item, true)
-    }
-
-    const updateDateDatas = (data) => {
-        setTableList(data);
-        setData(data)
-    }
-    
-
-    return (
-        <div className={style['table-parent-wrapper']}>
-            <div className={style['table-header']}>
-                <span>Documents</span>
-                <span>Tags</span>
-                <span>Owner</span>
-                <div className={style['table-header-modified']}>
-                    <span>Modified </span>
-                    <span className={style['modified-down-arrow']}></span>
-                </div>
-                <span className={style['table-header-action']}>Actions</span>
-            </div>
-            <div className={style['table-list-items-wrapper']} id='wiki-container-list'>
-                {
-                    tableList.map(item => (
-                        <RenderTable key={Math.floor(Math.random() * 100)} item={item} click={click} setTableData={updateDateDatas} tableList={tableList}/>
-                    ))
-                }
-            </div>
-        </div>
-    )
-}
-
-export default Table
-
-
-
+export default RenderTable;

@@ -12,6 +12,7 @@ export const FilterContext = ({ children }) => {
     const [openFolderSettingPane, setOpenFolderSettingPane] = useState(false);
     const [openSettingOption, setOpenSettingOption] = useState(false);
     const [openSearchBox, setOpenSearchBox] = useState(false)
+    const [reRender, setRerender] = useState(true);
 
     const handleModeChange = () => {
         setEnableListMode(prev => !prev)
@@ -33,7 +34,9 @@ export const FilterContext = ({ children }) => {
         openSettingOption, setOpenSettingOption,
         openSearchBox, setOpenSearchBox,
         handleModeChange,
-        getFilterData
+        getFilterData,
+        reRender,
+        setRerender
     }}>
         {children}
     </FiltersContext.Provider>)
