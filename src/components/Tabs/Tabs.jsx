@@ -129,7 +129,7 @@ export default function Tabs({ tabs, activeTabId, onOpen, onEdit, onPublish, onR
         let findProperindex = tab.length - 1 === index ? index : index + 1;
         let getNextTab = tab[findProperindex];
         
-        if (homeIcon === 'wiki' && (currentTab === activeTab || getNextTab.id === activeTab)) return false;
+        if (homeIcon === 'wiki' && (currentTab.id === activeTab || getNextTab.id === activeTab)) return false;
 
         return true;
     }
