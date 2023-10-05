@@ -125,6 +125,15 @@ export default function Tabs({ tabs, activeTabId, onOpen, onEdit, onPublish, onR
         onTabsOrderChange(updatedTabs);
     }
 
+    const removeSeparatorFromTab = (tab, currentTab, activeTab, index) => {
+        let findProperindex = tab.length - 1 === index ? index : index + 1;
+        let getNextTab = tab[findProperindex];
+        
+        if (homeIcon === 'wiki' && (currentTab === activeTab || getNextTab.id === activeTab)) return false;
+
+        return true;
+    }
+
     return (
         <div className={'sub-header-tabs-container' + (homeIcon === 'wiki' ? ' wiki-sub-header' : '')}>
 
@@ -182,7 +191,7 @@ export default function Tabs({ tabs, activeTabId, onOpen, onEdit, onPublish, onR
                             {homeIcon === 'wiki' && <div className='wiki-home-icon'>
                             </div>}
                         </div>
-                        {homeIcon === 'wiki' && <span className='wiki-separator'></span>}
+                        {removeSeparatorFromTab(tabs, tab, activeTabId, 0) && <span className='wiki-separator'></span>}
                     </div>
                 )
             })
@@ -238,7 +247,7 @@ export default function Tabs({ tabs, activeTabId, onOpen, onEdit, onPublish, onR
                                                                 {isSelected && <span className='tab-selected'></span>}
                                                                 <span className={"tab-close" + (!isSelected ? ' show-on-hover' : '')} title='Close tab' onClick={(e) => { e.stopPropagation(); onRemove(tab.id) }}></span>
                                                             </div>
-                                                            {homeIcon === 'wiki' && <span className='wiki-separator'></span>}
+                                                            {removeSeparatorFromTab(tabs, tab, activeTabId, index) && <span className='wiki-separator'></span>}
                                                         </div>
 
                                                     </>
