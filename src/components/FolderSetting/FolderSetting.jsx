@@ -165,7 +165,7 @@ const FolderSetting = () => {
         <div className={style["wiki-folder-container"]}>
             <div className={style["wiki-header-folder"]}>
                 {!searchFolderClick && <div className={style["wiki-title"]}>Manage Folder</div>}
-                <div className={style["wiki-folder_right-side"] + (searchFolderClick ? style[" wiki-folder_right-side-increase"] : '')}>
+                <div className={style["wiki-folder_right-side"] + (searchFolderClick ? ' ' + style["wiki-folder_right-side-increase"] : '')}>
                     <button className={style["wiki-folder-search"]} title="open search" onClick={() => setSearchFolderClick(true)}></button>
                     {searchFolderClick && <input type={'text'} className={style['wiki-folder-search-input']} autoFocus/>}
                 </div>
