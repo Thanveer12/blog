@@ -2,7 +2,15 @@
     display: flex;
 
     :not(:first-child){
-        
         border-left: 0.5px #000;
+    }
+
+    span {
+        position: relative;
+        margin-right: -2px;
+        
+        div {
+            border: 1px solid #1a1f26;
+        }
     }
 }
